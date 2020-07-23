@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Learn_Academy.Models;
 
 namespace Learn_Academy
 {
@@ -33,6 +35,9 @@ namespace Learn_Academy
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<Learn_AcademyContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Learn_AcademyContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
