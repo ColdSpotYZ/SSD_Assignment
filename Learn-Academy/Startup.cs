@@ -11,6 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Learn_Academy.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+
 
 namespace Learn_Academy
 {
@@ -38,6 +41,11 @@ namespace Learn_Academy
 
             services.AddDbContext<Learn_AcademyContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Learn_AcademyContext")));
+            services.AddIdentity<ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole>()
+       .AddDefaultUI(UIFramework.Bootstrap4)
+        .AddEntityFrameworkStores<Learn_AcademyContext>()
+        .AddDefaultTokenProviders();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +65,7 @@ namespace Learn_Academy
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
