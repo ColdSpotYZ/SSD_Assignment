@@ -41,14 +41,13 @@ namespace Learn_Academy
 
             services.AddDbContext<Learn_AcademyContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("Learn_AcademyContext")));
-            services.AddIdentity<ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole>()
+            
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
        .AddDefaultUI(UIFramework.Bootstrap4)
         .AddEntityFrameworkStores<Learn_AcademyContext>()
         .AddDefaultTokenProviders();
 
         }
-
-        
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
