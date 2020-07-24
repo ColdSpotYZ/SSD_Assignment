@@ -22,11 +22,22 @@ namespace Learn_Academy.Pages.Courses
 
         public IList<Course> Course { get;set; }
 
-        public async Task OnGetAsync()
+        public string searchCourses { get; set; }
+
+        public async Task OnGetAsync(string searchCourses)
         {
-            Course = await _context.Course.ToListAsync();
+            var courses = from m in _context.Course
+                          select m;
+
+            if (!string.IsNullOrEmpty(searchCourses))
+            {
+                courses = courses.Where(s => s.Name.Contains(searchCourses));
+            }
+
+            Course = await courses.ToListAsync();
         }
 
-        public string Courses { get; set; }
+        
+
     }
 }
