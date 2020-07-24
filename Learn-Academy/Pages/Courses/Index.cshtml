@@ -72,6 +72,7 @@
         max-height: 400px;
         min-width: 300px;
         max-height: 400px;
+        margin-left: 10px;
     }
 
         .card:hover {
@@ -81,6 +82,13 @@
     .container {
         padding: 2px 16px;
     }
+
+    .container-courses-wrap {
+        text-align: center;
+        width: 58vw;
+        overflow: scroll;
+        overflow-y: hidden;
+    }
 </style>
 
 <div id="banner" class="draft-container-wrap">
@@ -89,7 +97,7 @@
         <div class="draft-text">
             <div class="custom-wrap-Titles">
                 <h1 style="font-size: 40px;">
-                    The World's best Online Learning Platform <br />
+                    The World's Best Online Learning Platform <br />
                     Only at Learn Academy
                 </h1>
             </div>
@@ -160,11 +168,12 @@
     </tbody>
 </table>
 
-<div class="d-flex ">
+<div class="d-flex container-courses-wrap">
     @foreach (var item in Model.Course)
     {
         <div class="card">
-            <img src="https://st.depositphotos.com/1364311/1336/i/950/depositphotos_13360079-stock-photo-girl-studying-in-library.jpg" alt="Avatar" style="width:100%">
+            <img src="https://st.depositphotos.com/1364311/1336/i/950/depositphotos_13360079-stock-photo-girl-studying-in-library.jpg" alt="Avatar" style="        width: 100%
+">
             <div class="container">
                 <h4><b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
                 <p>@Html.DisplayFor(modelItem => item.Price)</p>
