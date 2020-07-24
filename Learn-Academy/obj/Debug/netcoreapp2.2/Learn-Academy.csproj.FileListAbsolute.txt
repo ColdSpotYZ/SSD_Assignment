@@ -141,3 +141,9 @@ C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.pdb
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.genruntimeconfig.cache
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csproj.CopyComplete
+C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Roles\Create.cshtml.g.cs
+C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Roles\Delete.cshtml.g.cs
+C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Roles\Details.cshtml.g.cs
+C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Roles\Edit.cshtml.g.cs
+C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Roles\Index.cshtml.g.cs
+C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Roles\Manage.cshtml.g.cs
