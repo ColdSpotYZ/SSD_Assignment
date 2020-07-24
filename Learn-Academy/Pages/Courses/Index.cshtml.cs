@@ -26,5 +26,7 @@ namespace Learn_Academy.Pages.Courses
         {
             Course = await _context.Course.ToListAsync();
         }
+
+        public string Courses { get; set; }
     }
 }

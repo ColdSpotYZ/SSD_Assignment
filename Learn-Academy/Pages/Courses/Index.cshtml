@@ -5,7 +5,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Courses</h1> 
+
+<form method="get">
+    <div class="input-group">
+        <input class="form-control" asp-for="Courses" /> 
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
 
 <p>
     <a asp-page="Create">Create New</a>
