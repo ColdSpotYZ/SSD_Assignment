@@ -1,63 +1,87 @@
 ﻿@page
 @model Learn_Academy.Pages.Courses.IndexModel
-@section Scripts 
+
+@section Scripts
 {
     <script src="@Url.Content("https://kit.fontawesome.com/9c3fdd9015.js")"></script>
+    <script src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")"></script>
+    <script src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js")"></script>
+
+
 }
 @{
     ViewData["Title"] = "Index";
 }
 <style>
+    .body {
+        overflow-x: hidden;
+    }
+    .custom-wrap-details {
+        justify-content: space-around;
+        color: white;
+        margin-top: 10px;
+    }
 
-.custom-wrap-details {
-    justify-content: space-around;
-    color: white;
-    margin-top: 10px;
-}
-.custom-wrap-details h2 {
-    font-size: 20px;
-}
+        .custom-wrap-details h2 {
+            font-size: 20px;
+        }
 
-.draft-container-wrap {
-    margin-bottom: 10vh;
-    display: block;
-}
+    .draft-container-wrap {
+        margin-bottom: 10vh;
+        display: block;
+    }
 
-.draft-container {
+    .draft-container {
+        position: relative;
+        display: inline-block;
+    }
 
-    position: relative;
-    display: inline-block;
-}
+    .draft-image {
+        width: 98vw;
+        min-height: 200px;
+    }
 
-.draft-image {
-    width: 98vw;
-    min-height: 200px;
-}
+    .draft-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate( -50%, -50% );
+        color: white;
+    }
 
-.draft-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate( -50%, -50% );
-    color: white;
-}
+        .draft-text h1, .draft-text h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
 
-.draft-text h1, .draft-text h3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    text-align: center;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
+        .draft-text h1 {
+            font-size: 5rem;
+        }
 
-.draft-text h1 {
-    font-size: 5rem;
-}
+    .custom-search-bar {
+        min-width: 45vw;
+    }
 
-.custom-search-bar {
-     min-width: 45vw;
-}
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 40%;
+        max-width: 300px;
+        max-height: 400px;
+        min-width: 300px;
+        max-height: 400px;
+    }
 
-    </style>
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    .container {
+        padding: 2px 16px;
+    }
+</style>
 
 <div id="banner" class="draft-container-wrap">
     <div class="draft-container">
@@ -71,7 +95,7 @@
             </div>
             <form method="get">
                 <div class="input-group custom-search-bar">
-                    <input class="form-control" asp-for="searchCourses" />
+                    <input placeholder="Search..." class="form-control" asp-for="searchCourses" />
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                     </div>
@@ -89,6 +113,9 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -108,26 +135,40 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Course) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Course)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<div class="d-flex ">
+    @foreach (var item in Model.Course)
+    {
+        <div class="card">
+            <img src="https://st.depositphotos.com/1364311/1336/i/950/depositphotos_13360079-stock-photo-girl-studying-in-library.jpg" alt="Avatar" style="width:100%">
+            <div class="container">
+                <h4><b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
+                <p>@Html.DisplayFor(modelItem => item.Price)</p>
+            </div>
+        </div>
+    }
+</div>
