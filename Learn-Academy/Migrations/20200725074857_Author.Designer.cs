@@ -4,14 +4,16 @@ using Learn_Academy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Learn_Academy.Migrations
 {
     [DbContext(typeof(Learn_AcademyContext))]
-    partial class Learn_AcademyContextModelSnapshot : ModelSnapshot
+    [Migration("20200725074857_Author")]
+    partial class Author
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

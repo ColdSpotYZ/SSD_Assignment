@@ -1,6 +1,6 @@
 ﻿@page
 @model Learn_Academy.Pages.Courses.IndexModel
-
+@inject Microsoft.AspNetCore.Identity.SignInManager<Learn_Academy.Models.ApplicationUser> signInManager;
 @section Scripts
 {
     <script src="@Url.Content("https://kit.fontawesome.com/9c3fdd9015.js")"></script>
@@ -16,6 +16,7 @@
     .body {
         overflow-x: hidden;
     }
+
     .custom-wrap-details {
         justify-content: space-around;
         color: white;
@@ -117,13 +118,13 @@
         </div>
     </div>
 </div>
-
+<!--
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+-->
 
-
-
+<!--
 <table class="table">
     <thead>
         <tr>
@@ -167,7 +168,7 @@
         }
     </tbody>
 </table>
-
+-->
 <div class="d-flex container-courses-wrap">
     @foreach (var item in Model.Course)
     {
@@ -176,7 +177,19 @@
 ">
             <div class="container">
                 <h4><b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
-                <p>@Html.DisplayFor(modelItem => item.Price)</p>
+                <p>@Html.DisplayFor(modelItem => item.Author)</p>
+                <p style="text-decoration:line-through;">@Html.DisplayFor(modelItem => item.Price)</p>
+                <!-- Change this to updated price -->
+                <p style="font-size: 2em;">@Html.DisplayFor(modelItem => item.Price)</p>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <div>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </div>
+                }
+
             </div>
         </div>
     }

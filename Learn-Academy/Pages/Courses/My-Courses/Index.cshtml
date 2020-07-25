@@ -1,0 +1,69 @@
+﻿@page
+@inject Microsoft.AspNetCore.Identity.SignInManager<Learn_Academy.Models.ApplicationUser> signInManager;
+@* @model Learn_Academy.Pages.Courses.My_Courses.IndexModel *@
+@model Learn_Academy.Pages.Courses.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 40%;
+        max-width: 300px;
+        max-height: 400px;
+        min-width: 300px;
+        max-height: 400px;
+        margin-left: 10px;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+    .container-courses-wrap {
+        text-align: center;
+        width: 58vw;
+        overflow: scroll;
+        overflow-y: hidden;
+    }
+</style>
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="d-flex container-courses-wrap">
+        @foreach (var item in Model.Course)
+        {
+            @if (item.Author == User.Identity.Name)
+            {
+                <div class="card">
+                    <img src="https://st.depositphotos.com/1364311/1336/i/950/depositphotos_13360079-stock-photo-girl-studying-in-library.jpg" alt="Avatar" style="width: 100%">
+                    <div class="container">
+                        <h4><b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
+                        <p style="text-decoration:line-through;">@Html.DisplayFor(modelItem => item.Price)</p>
+                        <!-- Change this to updated price -->
+                        <p style="font-size: 2em;">@Html.DisplayFor(modelItem => item.Price)</p>
+                        @if (signInManager.IsSignedIn(User) && (User.IsInRole("Teacher") || User.IsInRole("Admin")))
+                        {
+                            <div>
+                                <a asp-page="../Edit" asp-route-id="@item.ID">Edit</a> |
+                                <a asp-page="../Details" asp-route-id="@item.ID">Details</a> |
+                                <a asp-page="../Delete" asp-route-id="@item.ID">Delete</a>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            }
+
+        }
+
+    </div>
+}

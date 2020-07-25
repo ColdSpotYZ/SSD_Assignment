@@ -13,7 +13,9 @@ using Microsoft.EntityFrameworkCore;
 using Learn_Academy.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Learn_Academy
 {
@@ -24,11 +26,12 @@ namespace Learn_Academy
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+            public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -37,15 +40,26 @@ namespace Learn_Academy
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(config =>
+            {
+                // using Microsoft.AspNetCore.Mvc.Authorization;
+                // using Microsoft.AspNetCore.Authorization;
+                var policy = new AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            }
+                ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<Learn_AcademyContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Learn_AcademyContext")));
+                    options.UseSqlServer(
+                        Configuration.GetConnectionString("Learn_AcademyContext")));
             
             services.AddIdentity<ApplicationUser, ApplicationRole>()
        .AddDefaultUI(UIFramework.Bootstrap4)
         .AddEntityFrameworkStores<Learn_AcademyContext>()
         .AddDefaultTokenProviders();
+
 
         }
 

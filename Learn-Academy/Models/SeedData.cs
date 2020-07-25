@@ -27,7 +27,8 @@ namespace Learn_Academy.Models
                         Name = "Programming - Python",
                         CourseDate = DateTime.Parse("2020-9-10"),
                         Type = "Online",
-                        Price = 159.99M
+                        Price = 159.99M,
+                        Author = "tester@gmail.com"
                     },
 
                     new Course
@@ -35,7 +36,8 @@ namespace Learn_Academy.Models
                         Name = "Wallet Making",
                         CourseDate = DateTime.Parse("2020-9-13"),
                         Type = "On-Site",
-                        Price = 179.99M
+                        Price = 179.99M,
+                        Author = "tester@gmail.com"
                     },
 
                     new Course
@@ -43,7 +45,9 @@ namespace Learn_Academy.Models
                         Name = "Knitting",
                         CourseDate = DateTime.Parse("2020-9-13"),
                         Type = "Online",
-                        Price = 49.99M
+                        Price = 49.99M,
+                        Author = "tester@gmail.com"
+
                     },
 
                     new Course
@@ -51,7 +55,9 @@ namespace Learn_Academy.Models
                         Name = "Deep Learning",
                         CourseDate = DateTime.Parse("2020-9-15"),
                         Type = "Online",
-                        Price = 189.99M
+                        Price = 189.99M,
+                        Author = "tester@gmail.com"
+
                     }
                 );
                 // // Look for any users.
