@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/9c3fdd9015.js"
             crossorigin="anonymous">
     </script>
-    
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
@@ -22,43 +22,49 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <style>
-        nav {
-            background-color: 
-        }
-    </style>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Learn Academy</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index"><img src="~/logo.png" height="60" alt="Alternate Text" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        @*
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            </li>
+                        *@
+                        <li class="nav-item custom-nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Courses/Index">Explore </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Courses/Index">Courses</a>
-                        </li>
+
+
                         @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Roles/Index">Manage Roles</a>
+                            <li class="nav-item custom-nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Roles/Index">Manage</a>
                             </li>
                         }
                         @if (signInManager.IsSignedIn(User) && User.IsInRole("Teacher"))
                         {
-                            <li class="nav-item">
+                            <li class="nav-item custom-nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Courses/My-Courses">My Courses</a>
                             </li>
                         }
 
+                        <li class="nav-item custom-nav-item" style="margin-left: 10px;">
+                            <form action="/Courses/Index" method="get">
+                                <div class="input-group">
+                                    <input style="width: 300px" placeholder="Search..." name="searchCourses" class="form-control" />
+                                    <div class="input-group-append">
+                                        <button style="background-color:#2a73cc;" type="submit" class="btn"><i style="color:white" class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
                     </ul>
                 </div>
                 <partial name="_LoginPartial" />
@@ -95,7 +101,7 @@
                 crossorigin="anonymous"
                 integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
         </script>
-        <script src="https://kit.fontawesome.com/9c3fdd9015.js" 
+        <script src="https://kit.fontawesome.com/9c3fdd9015.js"
                 crossorigin="anonymous">
         </script>
     </environment>

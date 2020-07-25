@@ -7,10 +7,41 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.custom-nav-item {
+    min-width: 70px;
+}
+
+.custom-logout-button, .custom-login-button, .custom-register-button, custom-button {
+    text-decoration: none;
+    border: 1px solid white;
+    position: relative;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.custom-logout-button span, .custom-login-button span, .custom-register-button span, custom-button span {
+    text-decoration: none;
+    padding: 15px 30px;
+    color: #2a73cc;
+    font-family: 'Courier New';
+    font-weight: 900;
+}
+
+.custom-logout-button:hover, .custom-login-button:hover, .custom-register-button:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    background-color: #2a73cc;
+    border-color: #2a73cc;
+}
+
+.custom-logout-button span:hover, .custom-login-button span:hover, .custom-register-button span:hover, custom-button span:hover {
+    color: white;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {
