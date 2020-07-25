@@ -38,14 +38,28 @@
                             </li>
                         *@
                         <li class="nav-item custom-nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Courses/Index">Explore </a>
+                            <div class="dropdown">
+                                <a class="nav-link text-dark dropbtn" asp-area="" asp-page="/Courses/Index"><span>Explore</span></a>
+                                <div class="dropdown-content">
+                                    <a href="#">Link 1</a>
+                                    <a href="#">Link 2</a>
+                                    <a href="#">Link 3</a>
+                                </div>
+                            </div>
                         </li>
 
 
                         @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                         {
                             <li class="nav-item custom-nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Roles/Index">Manage</a>
+                                <div class="dropdown">
+                                    <a class="nav-link text-dark dropbtn" asp-area="" asp-page="/Roles/Index"><span>Manage</span></a>
+                                    <div class="dropdown-content">
+                                        <a href="#">Link 1</a>
+                                        <a href="#">Link 2</a>
+                                        <a href="#">Link 3</a>
+                                    </div>
+                                </div>
                             </li>
                         }
                         @if (signInManager.IsSignedIn(User) && User.IsInRole("Teacher"))
