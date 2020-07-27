@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Learn_Academy.Models;
 
 namespace Learn_Academy.Models
 {
@@ -23,5 +24,7 @@ namespace Learn_Academy.Models
         }
 
         public DbSet<Learn_Academy.Models.Course> Course { get; set; }
+
+        public DbSet<Learn_Academy.Models.Cart> Cart { get; set; }
     }
 }

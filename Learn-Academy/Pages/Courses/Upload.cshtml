@@ -1,0 +1,11 @@
+﻿@page
+@model Learn_Academy.Pages.Courses.UploadModel
+@{
+    ViewData["Title"] = "Upload";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <input type="file" asp-for="Upload" />
+    <input type="submit" />
+</form>

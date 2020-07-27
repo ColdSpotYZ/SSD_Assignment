@@ -49,6 +49,7 @@
                         <p style="text-decoration:line-through;">@Html.DisplayFor(modelItem => item.Price)</p>
                         <!-- Change this to updated price -->
                         <p style="font-size: 2em;">@Html.DisplayFor(modelItem => item.Price)</p>
+                        <a asp-page="cart" asp-page-handler="buynow" asp-route-id="@item.ID">Buy Now</a>
                         @if (signInManager.IsSignedIn(User) && (User.IsInRole("Teacher") || User.IsInRole("Admin")))
                         {
                             <div>
