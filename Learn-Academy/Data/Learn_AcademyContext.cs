@@ -25,6 +25,5 @@ namespace Learn_Academy.Models
 
         public DbSet<Learn_Academy.Models.Course> Course { get; set; }
 
-        public DbSet<Learn_Academy.Models.Cart> Cart { get; set; }
     }
 }
