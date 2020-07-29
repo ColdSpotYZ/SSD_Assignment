@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Learn_Academy.Models;
-using Microsoft.AspNetCore.Authorization;
 
-namespace Learn_Academy.Pages.Courses
+namespace Learn_Academy.Pages.Courses.Ratings
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +18,7 @@ namespace Learn_Academy.Pages.Courses
             _context = context;
         }
 
-        public Course Course { get; set; }
+        public Rating Rating { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +27,9 @@ namespace Learn_Academy.Pages.Courses
                 return NotFound();
             }
 
-            Course = await _context.Course.FirstOrDefaultAsync(m => m.ID == id);
+            Rating = await _context.Rating.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Course == null)
+            if (Rating == null)
             {
                 return NotFound();
             }

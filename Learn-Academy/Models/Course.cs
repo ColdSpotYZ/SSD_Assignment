@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
+using System.Security.Policy;
 
 namespace Learn_Academy.Models
 {
@@ -24,6 +25,7 @@ namespace Learn_Academy.Models
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
         public string Author { get; set; }
+
 
     }
 }

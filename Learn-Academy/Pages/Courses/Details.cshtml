@@ -1,43 +1,97 @@
 ﻿@page
 @model Learn_Academy.Pages.Courses.DetailsModel
-
+@section styles {
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
+}
 @{
     ViewData["Title"] = "Details";
 }
+@*
+    <div>
+        <h4>Course</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Course.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Course.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Course.CourseDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Course.CourseDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Course.Type)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Course.Type)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Course.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Course.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Course.Author)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Course.Author)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-page="./Edit" asp-route-id="@Model.Course.ID">Edit</a> |
+        <a asp-page="./Index">Back to List</a>
+    </div>
+*@
+<div class="custom-cart-button"><a style="padding:10px;text-decoration:none;position:relative;top:10px;bottom:10px;" class="Add-to-Cart" asp-area="" asp-page="./Index"><span>Back to List</span></a></div>
 
-<h1>Details</h1>
+<div style="background-color: #1E1E1C;min-height: 40vh;padding: 6%;">
+    <div>
 
-<div>
-    <h4>Course</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Course.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Course.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Course.CourseDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Course.CourseDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Course.Type)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Course.Type)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Course.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Course.Author)
-        </dd>
-    </dl>
+        <h1 style="color: white;">@Html.DisplayFor(model => model.Course.Name)</h1>
+
+        <p><span style="color: white;">Last updated: @Html.DisplayFor(model => model.Course.CourseDate)</span></p>
+        <p><span style="color: white;">@Html.DisplayFor(model => model.Course.Author)</span></p>
+    </div>
+    <div style="background-color:white;position:absolute;width:420px;left:55%;top:20%;border: 1px solid black;text-align:center;padding-top:1%;">
+        <img src="https://st.depositphotos.com/1364311/1336/i/950/depositphotos_13360079-stock-photo-girl-studying-in-library.jpg" style="width:400px;height:auto;" alt="Alternate Text" />
+        <div style="padding:5%">
+            <span style="color: #1E1E1C;text-decoration:line-through;">$@Html.DisplayFor(model => model.Course.Price)</span>
+            <span style="color: #1E1E1C;font-size:3rem;margin-left: 10px;">$@Html.DisplayFor(model => model.Course.Price)</span>
+        </div>
+        <div style="text-align:center;">
+            <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page=""><span>Add To Cart</span></a></div>
+        </div>
+    </div>
+
 </div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Course.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+<section>
+    <div style="width:30vw;margin-left:10px;">
+        <h2>Description</h2>
+        <h6>
+            @* @Html.DisplayFor(model => model.Course.Description)*@
+            This course has been specifically designed for beginners who have been looking to obtain a hands-on learning experience with Python, teaching you concepts of programming right from the basics and Python being the most simplest language for a beginner to start with. <br /><br />
+
+            It is the right time to start learning the in-demand Python language because of its gaining popularity in the fields on Data Science, Backend Development, Internet of Things, etc. Keep yourself equipped with the most sought-after skills! <br /><br />
+
+            A lot of exercise problems, programming lectures, PDF notes have been included to provide you with a great learning experience! <br /><br />
+
+            You will work on a project at the end of this course, which has been designed for you to implement all the topics which you would have mastered by the end of this course to give you enough confidence to start writing your own independent programs in Python. <br /><br />
+        </h6>
+    </div>
+</section>
+<section>
+    <div>
+        <h2>Ratings & Reviews</h2>
+        @*@foreach (var item in Model.Rating)
+        {
+
+        }
+        *@
+    </div>
+</section>

@@ -7,12 +7,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Learn_Academy.Models
 {
-    public class Rating
+    public class Rating : Course
     {
         public int CourseID { get; set; }
         public string CustomerName { get; set; }
 
-        [Column(TypeName = "decimal(1, 2)")]
+        [Column(TypeName = "decimal(3, 2)")]
         public decimal CourseRating { get; set; }
         public string Details { get; set; }
     }
