@@ -37,6 +37,7 @@
 </style>
 @if (User.Identity.IsAuthenticated)
 {
+    <a asp-page="../Create">Create New</a>
     <div class="d-flex container-courses-wrap">
         @foreach (var item in Model.Course)
         {
