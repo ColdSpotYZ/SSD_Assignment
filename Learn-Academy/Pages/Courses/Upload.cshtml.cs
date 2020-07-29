@@ -16,24 +16,41 @@ namespace Learn_Academy.Pages.Courses
             _environment = environment;
         }
 
-        private readonly string[] _permittedExtensions = { ".txt" };
+        private readonly string[] _permittedExtensionsV = { ".mp4" };
+        private readonly string[] _permittedExtensionsI = { ".jpeg", ".jpg", ".png" };
+
+    [BindProperty]
+        public IFormFile UploadV { get; set; }
 
         [BindProperty]
-        public IFormFile Upload { get; set; }
+        public IFormFile UploadI { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            string untrustedFileName = Path.GetFileName(Upload.FileName);
-            var fornmfilecontent = await FileHelpers.ProcessFormFile<IFormFile>(Upload, ModelState, _permittedExtensions, 10000000);
+            string untrustedFileNameV = Path.GetFileName(UploadV.FileName);
+            var fornmfilecontent = await FileHelpers.ProcessFormFile<IFormFile>(UploadV, ModelState, _permittedExtensionsV, 10000000);
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            var file = Path.Combine(_environment.ContentRootPath, "uploads", untrustedFileName);
-            using (var fileStream = new FileStream(file, FileMode.Create))
+            var fileV = Path.Combine(_environment.ContentRootPath, "uploads", "videos", untrustedFileNameV);
+            using (var fileStream = new FileStream(fileV, FileMode.Create))
             {
-                await Upload.CopyToAsync(fileStream);
+                await UploadV.CopyToAsync(fileStream);
             }
+
+            string untrustedFileNameI = Path.GetFileName(UploadI.FileName);
+            var fornmfilecontentI = await FileHelpers.ProcessFormFile<IFormFile>(UploadI, ModelState, _permittedExtensionsI, 10000000);
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            var fileI = Path.Combine(_environment.ContentRootPath, "uploads", "image", untrustedFileNameI);
+            using (var fileStream = new FileStream(fileI, FileMode.Create))
+            {
+                await UploadI.CopyToAsync(fileStream);
+            }
+
             return RedirectToPage("/Courses/My-Courses/Index");
         }
         public void OnGet()

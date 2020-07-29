@@ -6,6 +6,18 @@
 }
 
 <form method="post" enctype="multipart/form-data">
-    <input type="file" asp-for="Upload" />
+
+    <div class="form-group">
+        <label asp-for="UploadV" class="control-label">Upload Video</label>
+        <input type="file" asp-for="UploadV" />
+        <span asp-validation-for="UploadV" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UploadI" class="control-label">Upload Image</label>
+        <input type="file" asp-for="UploadI" />
+        <span asp-validation-for="UploadI" class="text-danger"></span>
+    </div>
+
     <input type="submit" />
 </form>
