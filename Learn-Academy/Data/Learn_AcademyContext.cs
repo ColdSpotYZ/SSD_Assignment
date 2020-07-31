@@ -27,5 +27,7 @@ namespace Learn_Academy.Models
 
         public DbSet<Learn_Academy.Models.Rating> Rating { get; set; }
 
+        public DbSet<Learn_Academy.Models.AuditRecord> AuditRecords { get; set; }
+
     }
 }

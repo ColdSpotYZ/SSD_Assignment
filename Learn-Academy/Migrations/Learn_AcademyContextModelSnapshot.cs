@@ -15,7 +15,7 @@ namespace Learn_Academy.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -104,6 +104,25 @@ namespace Learn_Academy.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Learn_Academy.Models.AuditRecord", b =>
+                {
+                    b.Property<int>("Audit_ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AuditActionType");
+
+                    b.Property<DateTime>("DateTimeStamp");
+
+                    b.Property<int>("KeyCourseFieldID");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("Audit_ID");
+
+                    b.ToTable("AuditRecords");
                 });
 
             modelBuilder.Entity("Learn_Academy.Models.Course", b =>
@@ -226,7 +245,7 @@ namespace Learn_Academy.Migrations
                     b.Property<int>("CourseID");
 
                     b.Property<decimal>("CourseRating")
-                        .HasColumnType("decimal(1, 2)");
+                        .HasColumnType("decimal(3, 2)");
 
                     b.Property<string>("CustomerName");
 

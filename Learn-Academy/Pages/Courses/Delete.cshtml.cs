@@ -51,7 +51,20 @@ namespace Learn_Academy.Pages.Courses
             if (Course != null)
             {
                 _context.Course.Remove(Course);
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
+
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Delete Movie Record";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.KeyCourseFieldID = Course.ID;
+                    var userID = User.Identity.Name.ToString();
+                    auditrecord.Username = userID;
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
+                }
+
             }
 
             return RedirectToPage("./Index");
