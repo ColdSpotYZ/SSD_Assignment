@@ -15,6 +15,10 @@ namespace Learn_Academy.Models
         {
         }
 
+        public Learn_AcademyContext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -28,6 +32,8 @@ namespace Learn_Academy.Models
         public DbSet<Learn_Academy.Models.Rating> Rating { get; set; }
 
         public DbSet<Learn_Academy.Models.AuditRecord> AuditRecords { get; set; }
+
+        public DbSet<Learn_Academy.Models.Membership> Membership { get; set; }
 
     }
 }

@@ -15,7 +15,7 @@ namespace Learn_Academy.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -152,6 +152,26 @@ namespace Learn_Academy.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Course");
                 });
 
+            modelBuilder.Entity("Learn_Academy.Models.Membership", b =>
+                {
+                    b.Property<string>("PurchaseId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<DateTime>("ExpiryDate");
+
+                    b.Property<int>("Plan");
+
+                    b.HasKey("PurchaseId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Membership");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -252,6 +272,13 @@ namespace Learn_Academy.Migrations
                     b.Property<string>("Details");
 
                     b.HasDiscriminator().HasValue("Rating");
+                });
+
+            modelBuilder.Entity("Learn_Academy.Models.Membership", b =>
+                {
+                    b.HasOne("Learn_Academy.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

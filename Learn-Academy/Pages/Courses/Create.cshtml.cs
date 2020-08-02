@@ -19,9 +19,6 @@ namespace Learn_Academy.Pages.Courses
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
 
 
-        [BindProperty]
-        public IFormFile Upload { get; set; }
-
         public CreateModel(Learn_Academy.Models.Learn_AcademyContext context)
         {
             _context = context;

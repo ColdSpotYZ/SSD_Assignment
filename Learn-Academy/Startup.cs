@@ -39,6 +39,7 @@ namespace Learn_Academy
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddHttpContextAccessor();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
