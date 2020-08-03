@@ -4,14 +4,16 @@ using Learn_Academy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Learn_Academy.Migrations
 {
     [DbContext(typeof(Learn_AcademyContext))]
-    partial class Learn_AcademyContextModelSnapshot : ModelSnapshot
+    [Migration("20200803182919_Testimonials")]
+    partial class Testimonials
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,21 +171,6 @@ namespace Learn_Academy.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Membership");
-                });
-
-            modelBuilder.Entity("Learn_Academy.Models.Testimonials", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Author");
-
-                    b.Property<string>("Details");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Testimonials");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -35,5 +35,7 @@ namespace Learn_Academy.Models
 
         public DbSet<Learn_Academy.Models.Membership> Membership { get; set; }
 
+        public DbSet<Learn_Academy.Models.Testimonials> Testimonials { get; set; }
+
     }
 }

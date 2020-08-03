@@ -61,10 +61,9 @@
     <div style="background-color:white;position:absolute;width:420px;left:55%;top:20%;border: 1px solid black;text-align:center;padding-top:1%;">
         <img src="https://st.depositphotos.com/1364311/1336/i/950/depositphotos_13360079-stock-photo-girl-studying-in-library.jpg" style="width:400px;height:auto;" alt="Alternate Text" />
         <div style="padding:5%">
-            <span style="color: #1E1E1C;margin-left: 10px;">$@Html.DisplayFor(model => model.Course.Category)</span>
         </div>
         <div style="text-align:center;">
-            <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page=""><span>Add To Cart</span></a></div>
+            <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page="/Purchase/Index"><span>Sign Up Now</span></a></div>
         </div>
     </div>
 
@@ -73,14 +72,7 @@
     <div style="width:30vw;margin-left:10px;">
         <h2>Description</h2>
         <h6>
-            @* @Html.DisplayFor(model => model.Course.Description)*@
-            This course has been specifically designed for beginners who have been looking to obtain a hands-on learning experience with Python, teaching you concepts of programming right from the basics and Python being the most simplest language for a beginner to start with. <br /><br />
-
-            It is the right time to start learning the in-demand Python language because of its gaining popularity in the fields on Data Science, Backend Development, Internet of Things, etc. Keep yourself equipped with the most sought-after skills! <br /><br />
-
-            A lot of exercise problems, programming lectures, PDF notes have been included to provide you with a great learning experience! <br /><br />
-
-            You will work on a project at the end of this course, which has been designed for you to implement all the topics which you would have mastered by the end of this course to give you enough confidence to start writing your own independent programs in Python. <br /><br />
+            @Html.DisplayFor(model => model.Course.Description)
         </h6>
     </div>
 </section>
