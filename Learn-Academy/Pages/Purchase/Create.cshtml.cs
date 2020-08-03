@@ -8,9 +8,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Learn_Academy.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Stripe;
+using Stripe.Checkout;
 
 namespace Learn_Academy.Pages.Purchase
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
@@ -25,6 +29,50 @@ namespace Learn_Academy.Pages.Purchase
 
         public IActionResult OnGet()
         {
+            StripeConfiguration.ApiKey = "sk_test_51HByJHLjxHvQGXDJcgeIcWdE7AAyefjbnWgzzbuRwlCD4vjW4ZFMNLmuPepWNP57v7FxC2gQzK8PwBhsrG55Fiso00FUO4bB7P";
+
+            var options1 = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string> {
+                "card",
+            },
+            LineItems = new List<SessionLineItemOptions>
+            {
+                new SessionLineItemOptions
+                {
+                    Price = "price_1HByP9LjxHvQGXDJ0DTBf5rO",
+                    Quantity = 1,
+                },
+            },
+                Mode = "subscription",
+                SuccessUrl = "https://example.com/success?session_id={CHECKOUT_SESSION_ID}",
+                CancelUrl = "https://example.com/cancel",
+            };
+
+            var service = new SessionService();
+            Session session = service.Create(options1);
+            ViewData["Session_id_1"] = session.Id;
+            var options2 = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string> {
+                "card",
+            },
+                LineItems = new List<SessionLineItemOptions>
+            {
+                new SessionLineItemOptions
+                {
+                    Price = "price_1HByPRLjxHvQGXDJMtPKOSwV",
+                    Quantity = 1,
+                },
+            },
+                Mode = "subscription",
+                SuccessUrl = "https://example.com/success?session_id={CHECKOUT_SESSION_ID}",
+                CancelUrl = "https://example.com/cancel",
+            };
+
+            var service2 = new SessionService();
+            Session session2 = service.Create(options2);
+            ViewData["Session_id_2"] = session2.Id;
             return Page();
         }
 

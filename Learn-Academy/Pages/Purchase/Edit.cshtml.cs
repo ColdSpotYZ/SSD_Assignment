@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Learn_Academy.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Purchase
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
