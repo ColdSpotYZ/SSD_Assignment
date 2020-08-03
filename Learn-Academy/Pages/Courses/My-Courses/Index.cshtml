@@ -47,10 +47,6 @@
                     <img src="https://st.depositphotos.com/1364311/1336/i/950/depositphotos_13360079-stock-photo-girl-studying-in-library.jpg" alt="Avatar" style="width: 100%">
                     <div class="container">
                         <h4><b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
-                        <p style="text-decoration:line-through;">@Html.DisplayFor(modelItem => item.Price)</p>
-                        <!-- Change this to updated price -->
-                        <p style="font-size: 2em;">@Html.DisplayFor(modelItem => item.Price)</p>
-                        <a asp-page="cart" asp-page-handler="buynow" asp-route-id="@item.ID">Buy Now</a>
                         @if (signInManager.IsSignedIn(User) && (User.IsInRole("Teacher") || User.IsInRole("Admin")))
                         {
                             <div>

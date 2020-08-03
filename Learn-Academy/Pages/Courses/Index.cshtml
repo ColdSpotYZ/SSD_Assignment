@@ -134,10 +134,7 @@
                 @Html.DisplayNameFor(model => model.Course[0].CourseDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Course[0].Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Course[0].Price)
+                @Html.DisplayNameFor(model => model.Course[0].Category)
             </th>
             <th></th>
         </tr>
@@ -153,11 +150,6 @@
                     @Html.DisplayFor(modelItem => item.CourseDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                     <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
@@ -177,9 +169,8 @@
                 <div class="container">
                     <h4><b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
                     <p>@Html.DisplayFor(modelItem => item.Author)</p>
-                    <p style="text-decoration:line-through;">@Html.DisplayFor(modelItem => item.Price)</p>
                     <!-- Change this to updated price -->
-                    <p style="font-size: 2em;">@Html.DisplayFor(modelItem => item.Price)</p>
+                    <p style="font-size: 2em;">@Html.DisplayFor(modelItem => item.Category)</p>
                     @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {
                         <div>

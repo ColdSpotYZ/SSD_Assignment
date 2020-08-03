@@ -24,10 +24,9 @@ namespace Learn_Academy.Models
                 context.Course.AddRange(
                     new Course
                     {
-                        Name = "Programming - Python",
+                        Name = "Python",
                         CourseDate = DateTime.Parse("2020-9-10"),
-                        Type = "Online",
-                        Price = 159.99M,
+                        Category = "Technology",
                         Author = "tester@gmail.com"
                     },
 
@@ -35,8 +34,7 @@ namespace Learn_Academy.Models
                     {
                         Name = "Wallet Making",
                         CourseDate = DateTime.Parse("2020-9-13"),
-                        Type = "On-Site",
-                        Price = 179.99M,
+                        Category = "Misc",
                         Author = "tester@gmail.com"
                     },
 
@@ -44,8 +42,7 @@ namespace Learn_Academy.Models
                     {
                         Name = "Knitting",
                         CourseDate = DateTime.Parse("2020-9-13"),
-                        Type = "Online",
-                        Price = 49.99M,
+                        Category = "Misc",
                         Author = "tester@gmail.com"
 
                     },
@@ -54,8 +51,7 @@ namespace Learn_Academy.Models
                     {
                         Name = "Deep Learning",
                         CourseDate = DateTime.Parse("2020-9-15"),
-                        Type = "Online",
-                        Price = 189.99M,
+                        Category = "Technology",
                         Author = "tester@gmail.com"
 
                     }

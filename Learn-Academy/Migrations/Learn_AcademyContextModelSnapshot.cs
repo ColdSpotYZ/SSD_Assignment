@@ -133,17 +133,14 @@ namespace Learn_Academy.Migrations
 
                     b.Property<string>("Author");
 
+                    b.Property<string>("Category");
+
                     b.Property<DateTime>("CourseDate");
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
                     b.Property<string>("Name");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<string>("Type");
 
                     b.HasKey("ID");
 
