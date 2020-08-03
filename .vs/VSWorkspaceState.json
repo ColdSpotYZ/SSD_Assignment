@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Learn-Academy",
+    "\\Learn-Academy\\Areas",
+    "\\Learn-Academy\\Areas\\Identity",
+    "\\Learn-Academy\\Areas\\Identity\\Pages",
+    "\\Learn-Academy\\Areas\\Identity\\Pages\\Account",
+    "\\Learn-Academy\\Pages",
+    "\\Learn-Academy\\Pages\\Audit",
+    "\\Learn-Academy\\Pages\\Courses"
+  ],
+  "SelectedNode": "\\Learn-Academy\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+  "PreviewInSolutionExplorer": false
+}

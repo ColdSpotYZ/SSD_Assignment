@@ -345,3 +345,9 @@ C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Purchase\Details.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Purchase\Edit.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Purchase\Index.g.cshtml.cs
+C:\Users\darie\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\purchase.g.cshtml.cs
+C:\Users\darie\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Purchase\Create.g.cshtml.cs
+C:\Users\darie\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Purchase\Delete.g.cshtml.cs
+C:\Users\darie\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Purchase\Details.g.cshtml.cs
+C:\Users\darie\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Purchase\Edit.g.cshtml.cs
+C:\Users\darie\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Purchase\Index.g.cshtml.cs

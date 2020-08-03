@@ -80,6 +80,17 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    // Login failed attempt - create an audit record
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Successful Login";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.KeyCourseFieldID = 999;
+                    // 998 – dummy record 
+
+                    auditrecord.Username = Input.Email;
+                    // save the email used for the successful login
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
                     return LocalRedirect(returnUrl);
                 }
                 else

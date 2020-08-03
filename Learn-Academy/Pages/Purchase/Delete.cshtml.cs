@@ -51,7 +51,19 @@ namespace Learn_Academy.Pages.Purchase
             if (Membership != null)
             {
                 _context.Membership.Remove(Membership);
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
+
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Delete Purchase Record";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.KeyCourseFieldID = 1000;
+                    var userID = User.Identity.Name.ToString();
+                    auditrecord.Username = userID;
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
+                }
             }
 
             return RedirectToPage("./Index");

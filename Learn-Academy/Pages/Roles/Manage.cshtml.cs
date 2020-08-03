@@ -91,6 +91,18 @@ namespace Learn_Academy.Pages.Roles
             if (roleResult.Succeeded)
             {
                 TempData["message"] = "Role added to this user successfully";
+                // Create an auditrecord object
+                var auditrecord = new AuditRecord();
+                auditrecord.AuditActionType = "Add User Role Record";
+                auditrecord.DateTimeStamp = DateTime.Now;
+                auditrecord.KeyCourseFieldID = 997;
+                // Get current logged-in user
+                var userID = User.Identity.Name.ToString();
+                auditrecord.Username = userID;
+
+                _context.AuditRecords.Add(auditrecord);
+                await _context.SaveChangesAsync();
+
                 return RedirectToPage("Manage");
             }
 
@@ -110,6 +122,18 @@ namespace Learn_Academy.Pages.Roles
             if (await _userManager.IsInRoleAsync(user, delrolename))
             {
                 await _userManager.RemoveFromRoleAsync(user, delrolename);
+
+                // Create an auditrecord object
+                var auditrecord = new AuditRecord();
+                auditrecord.AuditActionType = "Delete User Role Record";
+                auditrecord.DateTimeStamp = DateTime.Now;
+                auditrecord.KeyCourseFieldID = 997;
+                // Get current logged-in user
+                var userID = User.Identity.Name.ToString();
+                auditrecord.Username = userID;
+
+                _context.AuditRecords.Add(auditrecord);
+                await _context.SaveChangesAsync();
 
                 TempData["message"] = "Role removed from this user successfully";
             }

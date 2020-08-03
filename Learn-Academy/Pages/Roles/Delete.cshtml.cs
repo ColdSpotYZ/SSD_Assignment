@@ -14,10 +14,12 @@ namespace Learn_Academy.Pages.Roles
     public class DeleteModel : PageModel
     {
         private readonly RoleManager<ApplicationRole> _roleManager;
+        private readonly Learn_Academy.Models.Learn_AcademyContext _context;
 
-        public DeleteModel(RoleManager<ApplicationRole> roleManager)
+        public DeleteModel(RoleManager<ApplicationRole> roleManager, Learn_Academy.Models.Learn_AcademyContext context)
         {
             _roleManager = roleManager;
+            _context = context; 
         }
 
         [BindProperty]
@@ -48,6 +50,21 @@ namespace Learn_Academy.Pages.Roles
 
             ApplicationRole = await _roleManager.FindByIdAsync(id);
             IdentityResult roleRuslt = await _roleManager.DeleteAsync(ApplicationRole);
+
+            if(roleRuslt.Succeeded)
+            {
+                // Create an auditrecord object
+                var auditrecord = new AuditRecord();
+                auditrecord.AuditActionType = "Delete Role Record";
+                auditrecord.DateTimeStamp = DateTime.Now;
+                auditrecord.KeyCourseFieldID = 998;
+                // Get current logged-in user
+                var userID = User.Identity.Name.ToString();
+                auditrecord.Username = userID;
+
+                _context.AuditRecords.Add(auditrecord);
+                await _context.SaveChangesAsync();
+            }
 
             return RedirectToPage("./Index");
 

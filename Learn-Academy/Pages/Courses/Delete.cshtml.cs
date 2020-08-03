@@ -56,7 +56,7 @@ namespace Learn_Academy.Pages.Courses
                 if (await _context.SaveChangesAsync() > 0)
                 {
                     var auditrecord = new AuditRecord();
-                    auditrecord.AuditActionType = "Delete Movie Record";
+                    auditrecord.AuditActionType = "Delete Course Record";
                     auditrecord.DateTimeStamp = DateTime.Now;
                     auditrecord.KeyCourseFieldID = Course.ID;
                     var userID = User.Identity.Name.ToString();

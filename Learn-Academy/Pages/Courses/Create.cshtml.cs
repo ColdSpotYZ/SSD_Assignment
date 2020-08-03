@@ -45,7 +45,7 @@ namespace Learn_Academy.Pages.Courses
             {
                 // Create an auditrecord object
                 var auditrecord = new AuditRecord();
-                auditrecord.AuditActionType = "Add Movie Record";
+                auditrecord.AuditActionType = "Add Course Record";
                 auditrecord.DateTimeStamp = DateTime.Now;
                 auditrecord.KeyCourseFieldID = Course.ID;
                 // Get current logged-in user
