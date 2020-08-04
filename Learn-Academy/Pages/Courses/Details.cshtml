@@ -4,50 +4,11 @@
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
 }
 @{
-    ViewData["Title"] = "Details";
+    IEnumerable<Learn_Academy.Models.Rating> Ratings = ViewData["Rating"] as IEnumerable<Learn_Academy.Models.Rating>;
+    @*IEnumerable<Learn_Academy.Controllers.MembershipsController> Membership = ViewData["Membership"] as IEnumerable<Learn_Academy.Controllers.MembershipsController>;
+    *@ViewData["Title"] = "Details";
 }
-@*
-    <div>
-        <h4>Course</h4>
-        <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Course.Name)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Course.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Course.CourseDate)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Course.CourseDate)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Course.Type)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Course.Type)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Course.Price)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Course.Price)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Course.Author)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Course.Author)
-            </dd>
-        </dl>
-    </div>
-    <div>
-        <a asp-page="./Edit" asp-route-id="@Model.Course.ID">Edit</a> |
-        <a asp-page="./Index">Back to List</a>
-    </div>
-*@
+
 <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;position:relative;top:10px;bottom:10px;" class="Add-to-Cart" asp-area="" asp-page="./Index"><span>Back to List</span></a></div>
 
 <div style="background-color: #1E1E1C;min-height: 40vh;padding: 6%;">
@@ -63,6 +24,14 @@
         <div style="padding:5%">
         </div>
         <div style="text-align:center;">
+            @*@foreach (var user in Membership)
+        {
+        @if (this.User.Identity == user.GetMembership())
+            {
+            <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page=""><span>Start Course</span></a></div>
+            }
+            }
+            *@
             <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page="/Purchase/Create"><span>Sign Up Now</span></a></div>
         </div>
     </div>
@@ -79,10 +48,11 @@
 <section>
     <div>
         <h2>Ratings & Reviews</h2>
-        @*@foreach (var item in Model.Rating)
+        @*@foreach (var item in Ratings)
         {
 
         }
         *@
+
     </div>
 </section>

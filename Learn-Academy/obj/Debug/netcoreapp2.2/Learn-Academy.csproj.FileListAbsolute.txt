@@ -367,3 +367,4 @@ C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.pdb
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.genruntimeconfig.cache
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csproj.CopyComplete
+C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csprojAssemblyReference.cache

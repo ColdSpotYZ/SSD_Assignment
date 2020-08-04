@@ -21,6 +21,11 @@ namespace Learn_Academy.Pages.Courses
 
         public Course Course { get; set; }
 
+        public class ViewModel
+        {
+            public IEnumerable<Membership> Membership { get; set; }
+        }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
