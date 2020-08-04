@@ -133,12 +133,13 @@
         </div>
     </div>
 </div>
+<h1>Courses that we offer</h1>
 <div class="d-flex container-courses-wrap">
     @foreach (var item in Model.Course)
     {
         <a asp-page="./Details" asp-route-id="@item.ID" style="text-decoration:none;color:black;">
             <div class="card">
-                <img src="https://st.depositphotos.com/1364311/1336/i/950/depositphotos_13360079-stock-photo-girl-studying-in-library.jpg" alt="Avatar" style="width: 100%">
+                <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="Avatar" style="width: 100%">
                 <div class="container">
                     <h4><b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
                     <p>@Html.DisplayFor(modelItem => item.Author)</p>

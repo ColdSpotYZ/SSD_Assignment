@@ -16,12 +16,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Testimonials.Author" class="control-label"></label>
-                <input asp-for="Testimonials.Author" class="form-control" />
+                <input asp-for="Testimonials.Author" required class="form-control" />
                 <span asp-validation-for="Testimonials.Author" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Testimonials.Details" class="control-label"></label>
-                <input asp-for="Testimonials.Details" class="form-control" />
+                <input asp-for="Testimonials.Details" required class="form-control" />
                 <span asp-validation-for="Testimonials.Details" class="text-danger"></span>
             </div>
             <div class="form-group">
