@@ -4,9 +4,7 @@
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
 }
 @{
-    IEnumerable<Learn_Academy.Models.Rating> Ratings = ViewData["Rating"] as IEnumerable<Learn_Academy.Models.Rating>;
-    @*IEnumerable<Learn_Academy.Controllers.MembershipsController> Membership = ViewData["Membership"] as IEnumerable<Learn_Academy.Controllers.MembershipsController>;
-    *@ViewData["Title"] = "Details";
+    ViewData["Title"] = "Details";
 }
 
 <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;position:relative;top:10px;bottom:10px;" class="Add-to-Cart" asp-area="" asp-page="./Index"><span>Back to List</span></a></div>
@@ -16,22 +14,23 @@
 
         <h1 style="color: white;">@Html.DisplayFor(model => model.Course.Name)</h1>
 
+
         <p><span style="color: white;">Last updated: @Html.DisplayFor(model => model.Course.CourseDate)</span></p>
-        <p><span style="color: white;">@Html.DisplayFor(model => model.Course.Author)</span></p>
+            <p><span style="color: white;">@Html.DisplayFor(model => model.Course.Author)</span></p>
     </div>
     <div style="background-color:white;position:absolute;width:420px;left:55%;top:20%;border: 1px solid black;text-align:center;padding-top:1%;">
         <img src="https://st.depositphotos.com/1364311/1336/i/950/depositphotos_13360079-stock-photo-girl-studying-in-library.jpg" style="width:400px;height:auto;" alt="Alternate Text" />
         <div style="padding:5%">
         </div>
         <div style="text-align:center;">
-            @*@foreach (var user in Membership)
-        {
-        @if (this.User.Identity == user.GetMembership())
-            {
-            <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page=""><span>Start Course</span></a></div>
-            }
-            }
-            *@
+            @foreach (var user in Model.Membership)
+                {
+                @if (this.User.Identity == user.ApplicationUser)
+                    {
+                    <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page=""><span>Start Course</span></a></div>
+                    }
+                    }
+            
             <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page="/Purchase/Create"><span>Sign Up Now</span></a></div>
         </div>
     </div>
@@ -49,9 +48,9 @@
     <div>
         <h2>Ratings & Reviews</h2>
         @*@foreach (var item in Ratings)
-        {
+            {
 
-        }
+            }
         *@
 
     </div>

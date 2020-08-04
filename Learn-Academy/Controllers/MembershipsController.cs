@@ -11,8 +11,14 @@ namespace Learn_Academy.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MembershipsController : ControllerBase
+    public class MembershipsController : Controller
     {
+        public ActionResult IndexViewData()
+        {
+            ViewData["Membership"] = GetMembership();
+            return View();
+        }
+
         private readonly Learn_AcademyContext _context;
 
 

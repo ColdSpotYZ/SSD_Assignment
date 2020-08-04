@@ -48,10 +48,13 @@
 
                         @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                         {
-
                             <li class="nav-item custom-nav-item">
                                 <div class="dropdown">
-                                    <a class="nav-link text-dark dropbtn" asp-area="" asp-page="/Roles/Index"><span>Manage</span></a>
+                                    <a class="nav-link text-dark dropbtn" asp-area=""><span>Manage</span></a>
+                                    <div class="dropdown-content">
+                                        <a asp-page="/Roles/Index">Roles</a>
+                                        <a asp-page="/Courses/Manage">Courses</a>
+                                    </div>
                                 </div>
                             </li>
                         }

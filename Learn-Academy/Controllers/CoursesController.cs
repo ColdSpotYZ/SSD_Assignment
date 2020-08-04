@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Learn_Academy.Models
 {
-    [Route("api/[controller]")]
+
+        [Route("api/[controller]")]
     [ApiController]
-    public class CoursesController : ControllerBase
+    public class CoursesController : Controller
     {
+
         private readonly Learn_AcademyContext _context;
 
         public CoursesController(Learn_AcademyContext context)

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Learn_Academy.Models;
 using Microsoft.AspNetCore.Authorization;
+using Learn_Academy.Controllers;
 
 namespace Learn_Academy.Pages.Courses
 {
@@ -20,11 +21,7 @@ namespace Learn_Academy.Pages.Courses
         }
 
         public Course Course { get; set; }
-
-        public class ViewModel
-        {
-            public IEnumerable<Membership> Membership { get; set; }
-        }
+        public IList<Membership> Membership { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,6 +29,8 @@ namespace Learn_Academy.Pages.Courses
             {
                 return NotFound();
             }
+
+            Membership = await _context.Membership.ToListAsync();
 
             Course = await _context.Course.FirstOrDefaultAsync(m => m.ID == id);
 
@@ -41,5 +40,6 @@ namespace Learn_Academy.Pages.Courses
             }
             return Page();
         }
+
     }
 }
