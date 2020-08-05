@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Roles
 {
-    [Authorize(Roles = "Admin, Role-Admin")]
     public class DeleteModel : PageModel
     {
         private readonly RoleManager<ApplicationRole> _roleManager;
@@ -39,7 +38,6 @@ namespace Learn_Academy.Pages.Roles
                 return NotFound();
             }
 
-
             if (ApplicationRole.Name == "Admin")
             {
                 return NotFound();
@@ -60,7 +58,13 @@ namespace Learn_Academy.Pages.Roles
             {
                 return NotFound();
             }
-            return Page();
+
+            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
+            {
+                return Page();
+            }
+
+            return NotFound();
         }
 
         public async Task<IActionResult> OnPostAsync(string id)
@@ -71,23 +75,26 @@ namespace Learn_Academy.Pages.Roles
             }
 
             ApplicationRole = await _roleManager.FindByIdAsync(id);
-
-            IdentityResult roleRuslt = await _roleManager.DeleteAsync(ApplicationRole);
-
-            if(roleRuslt.Succeeded)
+            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
             {
-                // Create an auditrecord object
-                var auditrecord = new AuditRecord();
-                auditrecord.AuditActionType = "Delete Role Record";
-                auditrecord.DateTimeStamp = DateTime.Now;
-                auditrecord.KeyCourseFieldID = 998;
-                // Get current logged-in user
-                var userID = User.Identity.Name.ToString();
-                auditrecord.Username = userID;
+                IdentityResult roleRuslt = await _roleManager.DeleteAsync(ApplicationRole);
 
-                _context.AuditRecords.Add(auditrecord);
-                await _context.SaveChangesAsync();
+                if (roleRuslt.Succeeded)
+                {
+                    // Create an auditrecord object
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Delete Role Record";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.KeyCourseFieldID = 998;
+                    // Get current logged-in user
+                    var userID = User.Identity.Name.ToString();
+                    auditrecord.Username = userID;
+
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
+                }
             }
+                
 
             return RedirectToPage("./Index");
 

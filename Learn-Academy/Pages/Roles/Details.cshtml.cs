@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Roles
 {
-    [Authorize(Roles = "Admin, Role-Admin")]
     public class DetailsModel : PageModel
     {
         private readonly RoleManager<ApplicationRole> _roleManager;
@@ -35,7 +34,13 @@ namespace Learn_Academy.Pages.Roles
             {
                 return NotFound();
             }
-            return Page();
+
+            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
+            {
+                return Page();
+            }
+
+            return NotFound();
         }
 
     }

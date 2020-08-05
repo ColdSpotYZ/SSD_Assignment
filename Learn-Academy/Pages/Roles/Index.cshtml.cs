@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Roles
 {
-    [Authorize(Roles = "Admin, Role-Admin")]
     public class IndexModel : PageModel
     {
         private readonly RoleManager<ApplicationRole> _roleManager;
@@ -23,10 +22,16 @@ namespace Learn_Academy.Pages.Roles
 
         public List<ApplicationRole> ApplicationRole { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
+            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
+            {
+                ApplicationRole = await _roleManager.Roles.ToListAsync();
+                return Page();
+            }
+
+            return NotFound();
             // Get a list of roles
-            ApplicationRole = await _roleManager.Roles.ToListAsync();
 
         }
 

@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Roles
 {
-    [Authorize(Roles = "Admin, Role-Admin")]
     public class CreateModel : PageModel
     {
         private readonly RoleManager<ApplicationRole> _roleManager;
@@ -24,7 +23,12 @@ namespace Learn_Academy.Pages.Roles
 
         public IActionResult OnGet()
         {
-            return Page();
+            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
+            {
+                return Page();
+            }
+
+            return NotFound();
         }
 
         [BindProperty]
@@ -40,22 +44,26 @@ namespace Learn_Academy.Pages.Roles
             ApplicationRole.CreatedDate = DateTime.UtcNow;
             ApplicationRole.IPAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString();
 
-            IdentityResult roleRuslt = await _roleManager.CreateAsync(ApplicationRole);
-
-            if (roleRuslt.Succeeded)
+            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
             {
-                // Create an auditrecord object
-                var auditrecord = new AuditRecord();
-                auditrecord.AuditActionType = "Add Role Record";
-                auditrecord.DateTimeStamp = DateTime.Now;
-                auditrecord.KeyCourseFieldID = 998;
-                // Get current logged-in user
-                var userID = User.Identity.Name.ToString();
-                auditrecord.Username = userID;
+                IdentityResult roleRuslt = await _roleManager.CreateAsync(ApplicationRole);
 
-                _context.AuditRecords.Add(auditrecord);
-                await _context.SaveChangesAsync();
+                if (roleRuslt.Succeeded)
+                {
+                    // Create an auditrecord object
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Add Role Record";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.KeyCourseFieldID = 998;
+                    // Get current logged-in user
+                    var userID = User.Identity.Name.ToString();
+                    auditrecord.Username = userID;
+
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
+                }
             }
+
 
             return RedirectToPage("Index");
         }
