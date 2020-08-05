@@ -3,27 +3,34 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.IO;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Learn_Academy.Utilities;
+using Learn_Academy.Models;
 
 namespace Learn_Academy.Pages.Courses
 {
     public class UploadModel : PageModel
     {
         private IHostingEnvironment _environment;
-        public UploadModel(IHostingEnvironment environment)
+        private readonly Learn_Academy.Models.Learn_AcademyContext _context;
+        public UploadModel(IHostingEnvironment environment, Learn_Academy.Models.Learn_AcademyContext context)
         {
             _environment = environment;
+            _context = context;
         }
 
         private readonly string[] _permittedExtensionsV = { ".mp4" };
         private readonly string[] _permittedExtensionsI = { ".jpeg", ".jpg", ".png" };
 
-    [BindProperty]
+        [BindProperty]
         public IFormFile UploadV { get; set; }
 
         [BindProperty]
         public IFormFile UploadI { get; set; }
+
+        [BindProperty]
+        public int id { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -55,7 +62,12 @@ namespace Learn_Academy.Pages.Courses
         }
         public void OnGet()
         {
-
+            var list = new List<Course>();
+            foreach(var i in _context.Course)
+            {
+                list.Add(new Course() { ID = i.ID, Author = i.Author, Category = i.Category, CourseDate = i.CourseDate, Description = i.Description, Name = i.Name });
+            }
+            ViewData["Course"] = list; 
         }
     }
 }

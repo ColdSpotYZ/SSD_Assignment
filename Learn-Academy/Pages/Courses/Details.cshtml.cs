@@ -30,7 +30,7 @@ namespace Learn_Academy.Pages.Courses
                 return NotFound();
             }
 
-            Membership = await _context.Membership.ToListAsync();
+            //Membership = await _context.Membership.ToListAsync();
 
             Course = await _context.Course.FirstOrDefaultAsync(m => m.ID == id);
 
