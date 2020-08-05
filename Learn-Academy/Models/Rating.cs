@@ -15,5 +15,6 @@ namespace Learn_Academy.Models
         [Column(TypeName = "decimal(3, 2)")]
         public decimal CourseRating { get; set; }
         public string Details { get; set; }
+
     }
 }

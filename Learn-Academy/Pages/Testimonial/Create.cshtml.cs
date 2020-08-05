@@ -35,8 +35,10 @@ namespace Learn_Academy.Pages.Testimonial
                 return Page();
             }
 
-            Testimonials.Author = User.Identity.Name;
-            _context.Testimonials.Add(Testimonials);
+            if (Testimonials.Author == User.Identity.Name)
+            {
+                _context.Testimonials.Add(Testimonials);
+            }
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

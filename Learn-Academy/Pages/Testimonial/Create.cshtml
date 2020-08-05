@@ -19,6 +19,11 @@
                 <input asp-for="Testimonials.Details" required class="form-control" />
                 <span asp-validation-for="Testimonials.Details" class="text-danger"></span>
             </div>
+            <div class="form-group" style="display:none;">
+                <label asp-for="Testimonials.Author" class="control-label"></label>
+                <input asp-for="Testimonials.Author" required class="form-control" value="@User.Identity.Name" />
+                <span asp-validation-for="Testimonials.Author" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

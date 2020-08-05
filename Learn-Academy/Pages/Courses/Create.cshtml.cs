@@ -19,7 +19,6 @@ namespace Learn_Academy.Pages.Courses
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
 
-
         public CreateModel(Learn_Academy.Models.Learn_AcademyContext context)
         {
             _context = context;
@@ -39,8 +38,11 @@ namespace Learn_Academy.Pages.Courses
             {
                 return Page();
             }
-            Course.Author = User.Identity.Name;
-            _context.Course.Add(Course);
+            if (Course.Author == User.Identity.Name)
+            {
+                _context.Course.Add(Course);
+
+            }
             //await _context.SaveChangesAsync();
 
             if (await _context.SaveChangesAsync() > 0)
