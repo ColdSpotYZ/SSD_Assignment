@@ -6,10 +6,11 @@
     "\\Learn-Academy\\Areas\\Identity",
     "\\Learn-Academy\\Areas\\Identity\\Pages",
     "\\Learn-Academy\\Areas\\Identity\\Pages\\Account",
+    "\\Learn-Academy\\Migrations",
     "\\Learn-Academy\\Pages",
     "\\Learn-Academy\\Pages\\Audit",
     "\\Learn-Academy\\Pages\\Courses"
   ],
-  "SelectedNode": "\\Learn-Academy\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+  "SelectedNode": "\\Learn-Academy\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

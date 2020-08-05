@@ -10,6 +10,10 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
+using System.Text;
+using Newtonsoft.Json;
+using System.Collections;
 
 namespace Learn_Academy.Areas.Identity.Pages.Account
 {
@@ -20,17 +24,20 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly Learn_Academy.Models.Learn_AcademyContext _context;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            Learn_Academy.Models.Learn_AcademyContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         [BindProperty]
@@ -60,6 +67,40 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
             public string FullName { get; set; }
         }
 
+        private async Task<CaptchaVerification> VerifyCaptcha()
+        {
+            string userIP = string.Empty;
+            var ipAddress = Request.HttpContext.Connection.RemoteIpAddress;
+            if (ipAddress != null) userIP = ipAddress.MapToIPv4().ToString();
+
+            var captchaResponse = Request.Form["g-recaptcha-response"];
+            var payload = string.Format("&secret={0}&remoteip={1}&response={2}",
+                "6LeVnboZAAAAAHssNKqDOEXH6kfNJVJlOjAKjJZc",
+                userIP,
+                captchaResponse
+                );
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://www.google.com");
+            var request = new HttpRequestMessage(HttpMethod.Post, "/recaptcha/api/siteverify");
+            request.Content = new StringContent(payload, Encoding.UTF8, "application/x-www-form-urlencoded");
+            var response = await client.SendAsync(request);
+            return JsonConvert.DeserializeObject<CaptchaVerification>(response.Content.ReadAsStringAsync().Result);
+        }
+
+        public class CaptchaVerification
+        {
+            public CaptchaVerification()
+            {
+            }
+
+            [JsonProperty("success")]
+            public bool Success { get; set; }
+
+            [JsonProperty("error-codes")]
+            public IList Errors { get; set; }
+        }
+
         public void OnGet(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
@@ -68,6 +109,27 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
+            ReturnUrl = returnUrl;
+            //Verify the Captcha
+            var resultCaptcha = await VerifyCaptcha();
+            //Captcha was not a succes
+            if (!resultCaptcha.Success)
+            {
+                ModelState.AddModelError("", "Captcha is not valid");
+                // ReCAPTCHA failed attempt - create an audit record
+                var auditrecord = new AuditRecord();
+                auditrecord.AuditActionType = "FailedReCAPTCHA";
+                auditrecord.DateTimeStamp = DateTime.Now;
+                auditrecord.KeyCourseFieldID = 999;
+                // 999 – dummy record 
+
+                auditrecord.Username = Input.Email;
+                // save the email used for the failed login
+                _context.AuditRecords.Add(auditrecord);
+                await _context.SaveChangesAsync();
+                //Return to the register page
+                return Page();
+            }
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FullName = Input.FullName };
@@ -75,6 +137,18 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    // Registration successful attempt - create an audit record
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Successful Registration";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.KeyCourseFieldID = 999;
+                    // 998 – dummy record 
+
+                    auditrecord.Username = Input.Email;
+                    // save the email used for the successful login
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(

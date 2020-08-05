@@ -6,6 +6,15 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+
+<script type="text/javascript">
+    var onloadCallback = function () {
+        grecaptcha.render('html_element', {
+            'sitekey': '6LeVnboZAAAAAJPWSgVgvqz6GHXmeuMy4ZFSoqV0'
+        });
+    };
+</script>
+
 <div class="row">
     <div class="col-md-4">
         <section>
@@ -23,6 +32,8 @@
                     <input asp-for="Input.Password" class="form-control" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
+                <div id="html_element"></div>
+                <br>
                 <div class="form-group">
                     <div class="checkbox">
                         <label asp-for="Input.RememberMe">
@@ -43,6 +54,10 @@
                     </p>
                 </div>
             </form>
+            <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+                    async defer>
+            </script>
+
         </section>
     </div>
     <div class="col-md-6 col-md-offset-2">

@@ -5,6 +5,13 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+<script type="text/javascript">
+    var onloadCallback = function () {
+        grecaptcha.render('html_element', {
+            'sitekey': '6LeVnboZAAAAAJPWSgVgvqz6GHXmeuMy4ZFSoqV0'
+        });
+    };
+</script>
 
 <div class="row">
     <div class="col-md-4">
@@ -32,9 +39,13 @@
                 <input asp-for="Input.FullName" class="form-control" />
                 <span asp-validation-for="Input.FullName" class="text-danger"></span>
             </div>
-
+            <div id="html_element"></div>
+            <br>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+                async defer>
+        </script>
     </div>
 </div>
 

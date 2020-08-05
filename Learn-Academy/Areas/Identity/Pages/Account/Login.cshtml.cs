@@ -10,6 +10,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
+using System.Collections;
 
 namespace Learn_Academy.Areas.Identity.Pages.Account
 {
@@ -19,6 +23,40 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
+
+        private async Task<CaptchaVerification> VerifyCaptcha()
+        {
+            string userIP = string.Empty;
+            var ipAddress = Request.HttpContext.Connection.RemoteIpAddress;
+            if (ipAddress != null) userIP = ipAddress.MapToIPv4().ToString();
+
+            var captchaResponse = Request.Form["g-recaptcha-response"];
+            var payload = string.Format("&secret={0}&remoteip={1}&response={2}",
+                "6LeVnboZAAAAAHssNKqDOEXH6kfNJVJlOjAKjJZc",
+                userIP,
+                captchaResponse
+                );
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://www.google.com");
+            var request = new HttpRequestMessage(HttpMethod.Post, "/recaptcha/api/siteverify");
+            request.Content = new StringContent(payload, Encoding.UTF8, "application/x-www-form-urlencoded");
+            var response = await client.SendAsync(request);
+            return JsonConvert.DeserializeObject<CaptchaVerification>(response.Content.ReadAsStringAsync().Result);
+        }
+
+        public class CaptchaVerification
+        {
+            public CaptchaVerification()
+            {
+            }
+
+            [JsonProperty("success")]
+            public bool Success { get; set; }
+
+            [JsonProperty("error-codes")]
+            public IList Errors { get; set; }
+        }
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger, Learn_Academy.Models.Learn_AcademyContext context)
         {
@@ -71,7 +109,27 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
+            ReturnUrl = returnUrl;
+            //Verify the Captcha
+            var resultCaptcha = await VerifyCaptcha();
+            //Captcha was not a succes
+            if (!resultCaptcha.Success)
+            {
+                ModelState.AddModelError("", "Captcha is not valid");
+                // Login failed attempt - create an audit record
+                var auditrecord = new AuditRecord();
+                auditrecord.AuditActionType = "Failed ReCAPTCHA";
+                auditrecord.DateTimeStamp = DateTime.Now;
+                auditrecord.KeyCourseFieldID = 999;
+                // 999 – dummy record 
 
+                auditrecord.Username = Input.Email;
+                // save the email used for the failed login
+                _context.AuditRecords.Add(auditrecord);
+                await _context.SaveChangesAsync();
+                //Return to the login page
+                return Page();
+            }
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -80,7 +138,7 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    // Login failed attempt - create an audit record
+                    // Login successful attempt - create an audit record
                     var auditrecord = new AuditRecord();
                     auditrecord.AuditActionType = "Successful Login";
                     auditrecord.DateTimeStamp = DateTime.Now;
