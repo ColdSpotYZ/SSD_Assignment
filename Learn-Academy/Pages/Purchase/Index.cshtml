@@ -27,7 +27,11 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Membership) {
+
+@foreach (var item in Model.Membership)
+{
+    @if (item.ApplicationUser == User.Identity)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ExpiryDate)
@@ -36,7 +40,18 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Plan)
+                @if (item.Plan == 1)
+                {
+                    <span>Monthly</span>
+                }
+                else if (item.Plan == 2)
+                {
+                    <span>Monthly</span>
+                }
+                else if (item.Plan == 3)
+                {
+                    <span>Lifetime</span>
+                }
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.PurchaseId">Edit</a> |
@@ -44,6 +59,8 @@
                 <a asp-page="./Delete" asp-route-id="@item.PurchaseId">Delete</a>
             </td>
         </tr>
+    }
+
 }
     </tbody>
 </table>

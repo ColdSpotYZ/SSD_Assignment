@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Learn_Academy.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Testimonial
 {
+    [Authorize(Roles = "Admin, Course-Admin, Role-Admin, Students, Teacher")]
     public class CreateModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
@@ -33,6 +35,7 @@ namespace Learn_Academy.Pages.Testimonial
                 return Page();
             }
 
+            Testimonials.Author = User.Identity.Name;
             _context.Testimonials.Add(Testimonials);
             await _context.SaveChangesAsync();
 

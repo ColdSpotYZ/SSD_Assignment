@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Learn_Academy.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Testimonial
 {
+    [Authorize(Roles = "Admin, Course-Admin, Role-Admin, Students, Teacher")]
     public class DetailsModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;

@@ -36,6 +36,7 @@ namespace Learn_Academy.Pages.Purchase
             {
                 return NotFound();
             }
+
             return Page();
         }
 

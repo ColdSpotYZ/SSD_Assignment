@@ -29,11 +29,7 @@ namespace Learn_Academy.Pages.Courses
                 return NotFound();
             }
 
-            //var Membershiplist = new List<Membership>();
-            //foreach (var i in _context.Membership.ToList())
-            //{
-            //    Membershiplist.Add(new Membership() { ApplicationUser = i.ApplicationUser, ConcurrencyStamp = i.ConcurrencyStamp, Id = i.Id, Date = i.Date, ExpiryDate = i.ExpiryDate, Name = i.Name, NormalizedName = i.NormalizedName, PurchaseId = i.PurchaseId, Plan = i.Plan });
-            //}
+
             ViewData["Membership"] = _context.Membership;
 
             var temp = _context.Membership;

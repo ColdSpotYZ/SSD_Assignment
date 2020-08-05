@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Purchase
 {
-    [Authorize(Roles = "Admin")]
     public class DetailsModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
@@ -35,6 +34,12 @@ namespace Learn_Academy.Pages.Purchase
             {
                 return NotFound();
             }
+
+            if (Membership.ApplicationUser != User.Identity)
+            {
+                return NotFound();
+            }
+
             return Page();
         }
     }

@@ -25,7 +25,6 @@ namespace Learn_Academy.Models
         public string Author { get; set; }
 
         public string Description { get; set; }
-
         /*
         #region Image
 

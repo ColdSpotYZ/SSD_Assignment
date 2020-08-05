@@ -11,13 +11,21 @@
         <select asp-for="id" class="form-control">
             @foreach (var item in (List<Course>)ViewData["Course"])
             {
-                @if (item.Author == User.Identity.Name)
+                @if (User.IsInRole("Teacher"))
                 {
+                    @if (item.Author == User.Identity.Name)
+                    {
 
+                        <option value="@item.ID">@item.Name</option>
+                    }
+                }
+                else
+                {
                     <option value="@item.ID">@item.Name</option>
                 }
+
             }
-            </select>
+        </select>
         <span asp-validation-for="id" class="text-danger"></span>
     </div>
 

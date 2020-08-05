@@ -39,7 +39,7 @@ namespace Learn_Academy.Pages.Courses
                 return NotFound();
             }
 
-            if (Course.Author == User.Identity.Name)
+            if (Course.Author == User.Identity.Name || User.IsInRole("Admin") || User.IsInRole("Course-Admin"))
             {
                 return Page();
             }
@@ -49,43 +49,46 @@ namespace Learn_Academy.Pages.Courses
 
         public async Task<IActionResult> OnPostAsync()
         {
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
             _context.Attach(Course).State = EntityState.Modified;
-
-            try
+            if ((User.IsInRole("Teacher") && Course.Author == User.Identity.Name) || User.IsInRole("Admin") || User.IsInRole("Course-Admin"))
             {
-                //await _context.SaveChangesAsync();
-                if (await _context.SaveChangesAsync() > 0)
+                try
                 {
-                    // Create an auditrecord object
-                    var auditrecord = new AuditRecord();
-                    auditrecord.AuditActionType = "Edit Course Record";
-                    auditrecord.DateTimeStamp = DateTime.Now;
-                    auditrecord.KeyCourseFieldID = Course.ID;
-                    // Get current logged-in user
-                    var userID = User.Identity.Name.ToString();
-                    auditrecord.Username = userID;
+                    //await _context.SaveChangesAsync();
+                    if (await _context.SaveChangesAsync() > 0)
+                    {
+                        // Create an auditrecord object
+                        var auditrecord = new AuditRecord();
+                        auditrecord.AuditActionType = "Edit Course Record";
+                        auditrecord.DateTimeStamp = DateTime.Now;
+                        auditrecord.KeyCourseFieldID = Course.ID;
+                        // Get current logged-in user
+                        var userID = User.Identity.Name.ToString();
+                        auditrecord.Username = userID;
 
-                    _context.AuditRecords.Add(auditrecord);
-                    await _context.SaveChangesAsync();
+                        _context.AuditRecords.Add(auditrecord);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CourseExists(Course.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CourseExists(Course.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            
             return RedirectToPage("./Index");
         }
 

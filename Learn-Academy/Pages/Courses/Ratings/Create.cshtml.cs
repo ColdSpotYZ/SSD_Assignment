@@ -9,6 +9,7 @@ using Learn_Academy.Models;
 
 namespace Learn_Academy.Pages.Courses.Ratings
 {
+
     public class CreateModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
