@@ -21,8 +21,7 @@ namespace Learn_Academy.Pages.Courses
         }
 
         public Course Course { get; set; }
-        public IList<Membership> Membership { get; set; }
-
+        
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -30,7 +29,13 @@ namespace Learn_Academy.Pages.Courses
                 return NotFound();
             }
 
-            //Membership = await _context.Membership.ToListAsync();
+            var Membershiplist = new List<Membership>();
+            foreach (var i in _context.Membership)
+            {
+                Membershiplist.Add(new Membership() {ApplicationUser = i.ApplicationUser, ExpiryDate = i.ExpiryDate, Plan = i.Plan, PurchaseId = i.PurchaseId, Date = i.Date});
+            }
+            ViewData["Membership"] = Membershiplist;
+
 
             Course = await _context.Course.FirstOrDefaultAsync(m => m.ID == id);
 

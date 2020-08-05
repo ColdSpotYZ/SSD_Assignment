@@ -34,9 +34,9 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         @*
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                            </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+        </li>
                         *@
                         <li class="nav-item custom-nav-item">
                             <div class="dropdown">
@@ -58,10 +58,29 @@
                                 </div>
                             </li>
                         }
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Role-Admin"))
+                        {
+                            <li class="nav-item custom-nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link text-dark dropbtn" asp-area="" asp-page="/Roles/Index"><span>Manage</span></a>
+                                </div>
+                            </li>
+                        }
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Course-Admin"))
+                        {
+                            <li class="nav-item custom-nav-item">
+                                <div class="dropdown">
+                                    <a class="nav-link text-dark dropbtn" asp-area="" asp-page="/Course/Manage"><span>Manage</span></a>
+                                </div>
+                            </li>
+                        }
+
                         @if (signInManager.IsSignedIn(User) && User.IsInRole("Teacher"))
                         {
                             <li class="nav-item custom-nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Courses/My-Courses/Index">My Courses</a>
+                                <div class="dropdown">
+                                    <a class="nav-link text-dark dropbtn" asp-area="" asp-page="/Courses/My-Courses/Index"><span>My-Courses</span></a>
+                                </div>
                             </li>
                         }
 

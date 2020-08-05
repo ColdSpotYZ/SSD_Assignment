@@ -23,13 +23,25 @@
         <div style="padding:5%">
         </div>
         <div style="text-align:center;">
-            @if (this.User.IsInRole("Student"))
-            {
-                <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page=""><span>Start Course</span></a></div>
-            }
-            else
-            {
-                <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page="/Purchase/Create"><span>Sign Up Now</span></a></div>
+            @{bool NotAMember = false;
+                @foreach (var item in (List<Learn_Academy.Models.Membership>)ViewData["Membership"])
+                {
+                    @if (item.ApplicationUser == this.User.Identity)
+                    {
+                        <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page=""><span>Start Course</span></a></div>
+                        break;
+                    }
+                    else
+                    {
+                        NotAMember = true;
+
+                    }
+                }
+                @if (NotAMember)
+                {
+                    <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page="/Purchase/Create"><span>Sign Up Now</span></a></div>
+
+                }
             }
 
         </div>

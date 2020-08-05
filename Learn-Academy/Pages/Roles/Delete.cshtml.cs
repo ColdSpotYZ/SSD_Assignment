@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Roles
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Role-Admin")]
     public class DeleteModel : PageModel
     {
         private readonly RoleManager<ApplicationRole> _roleManager;
