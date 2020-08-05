@@ -1,5 +1,7 @@
 ﻿@page
 @model Learn_Academy.Pages.Courses.DetailsModel
+@using Microsoft.EntityFrameworkCore;
+@using Learn_Academy.Models;
 @section styles {
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
 }
@@ -24,7 +26,7 @@
         </div>
         <div style="text-align:center;">
             @{bool NotAMember = false;
-                @foreach (var item in (List<Learn_Academy.Models.Membership>)ViewData["Membership"])
+                @foreach (var item in (DbSet<Membership>)ViewData["Membership"])
                 {
                     @if (item.ApplicationUser == this.User.Identity)
                     {

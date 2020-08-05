@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Learn_Academy.Models;
 using Microsoft.AspNetCore.Authorization;
-using Learn_Academy.Controllers;
 
 namespace Learn_Academy.Pages.Courses
 {
@@ -29,14 +28,14 @@ namespace Learn_Academy.Pages.Courses
                 return NotFound();
             }
 
-            var Membershiplist = new List<Membership>();
-            foreach (var i in _context.Membership)
-            {
-                Membershiplist.Add(new Membership() {ApplicationUser = i.ApplicationUser, ExpiryDate = i.ExpiryDate, Plan = i.Plan, PurchaseId = i.PurchaseId, Date = i.Date});
-            }
-            ViewData["Membership"] = Membershiplist;
+            //var Membershiplist = new List<Membership>();
+            //foreach (var i in _context.Membership.ToList())
+            //{
+            //    Membershiplist.Add(new Membership() { ApplicationUser = i.ApplicationUser, ConcurrencyStamp = i.ConcurrencyStamp, Id = i.Id, Date = i.Date, ExpiryDate = i.ExpiryDate, Name = i.Name, NormalizedName = i.NormalizedName, PurchaseId = i.PurchaseId, Plan = i.Plan });
+            //}
+            ViewData["Membership"] = _context.Membership;
 
-
+            var temp = _context.Membership;
             Course = await _context.Course.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Course == null)
