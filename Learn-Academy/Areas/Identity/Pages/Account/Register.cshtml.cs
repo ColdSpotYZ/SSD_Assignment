@@ -14,6 +14,7 @@ using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
 using System.Collections;
+using System.Linq;
 
 namespace Learn_Academy.Areas.Identity.Pages.Account
 {
@@ -25,19 +26,22 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
+        private readonly RoleManager<ApplicationRole> _roleManager;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            Learn_Academy.Models.Learn_AcademyContext context)
+            Learn_Academy.Models.Learn_AcademyContext context,
+            RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
             _context = context;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -134,9 +138,16 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FullName = Input.FullName };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    ApplicationUser AppUser = _context.Users.SingleOrDefault(u => u.UserName == Input.Email);
+                    ApplicationRole AppRole = await _roleManager.FindByNameAsync("Student");
+
+                    IdentityResult roleResult = await _userManager.AddToRoleAsync(AppUser, AppRole.Name);
 
                     // Registration successful attempt - create an audit record
                     var auditrecord = new AuditRecord();
