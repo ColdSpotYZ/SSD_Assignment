@@ -156,17 +156,23 @@ namespace Learn_Academy.Migrations
                     b.Property<string>("PurchaseId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
+                    b.Property<string>("ConcurrencyStamp");
 
                     b.Property<DateTime>("Date");
 
                     b.Property<DateTime>("ExpiryDate");
 
+                    b.Property<string>("Id");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("NormalizedName");
+
                     b.Property<int>("Plan");
 
                     b.HasKey("PurchaseId");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("Id");
 
                     b.ToTable("Membership");
                 });
@@ -177,9 +183,11 @@ namespace Learn_Academy.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Author");
+                    b.Property<string>("Author")
+                        .IsRequired();
 
-                    b.Property<string>("Details");
+                    b.Property<string>("Details")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
@@ -292,7 +300,7 @@ namespace Learn_Academy.Migrations
                 {
                     b.HasOne("Learn_Academy.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("Id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
