@@ -139,13 +139,15 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FullName = Input.FullName };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
-                ApplicationUser AppUser = _context.Users.SingleOrDefault(u => u.UserName == Input.Email);
-                ApplicationRole AppRole = await _roleManager.FindByNameAsync("Student");
-
-                IdentityResult roleResult = await _userManager.AddToRoleAsync(AppUser, AppRole.Name);
+                
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    ApplicationUser AppUser = _context.Users.SingleOrDefault(u => u.UserName == Input.Email);
+                    ApplicationRole AppRole = await _roleManager.FindByNameAsync("Student");
+
+                    IdentityResult roleResult = await _userManager.AddToRoleAsync(AppUser, AppRole.Name);
 
                     // Registration successful attempt - create an audit record
                     var auditrecord = new AuditRecord();
