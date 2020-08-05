@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Courses
 {
-    [Authorize(Roles = "Admin, Teacher")]
     public class PurchaseModel : PageModel
     {
 

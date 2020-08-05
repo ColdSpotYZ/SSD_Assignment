@@ -75,7 +75,7 @@
                             </li>
                         }
 
-                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Teacher"))
+                        @if (User.IsInRole("Teacher"))
                         {
                             <li class="nav-item custom-nav-item">
                                 <div class="dropdown">

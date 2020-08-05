@@ -38,6 +38,28 @@ namespace Learn_Academy.Pages.Roles
             {
                 return NotFound();
             }
+
+
+            if (ApplicationRole.Name == "Admin")
+            {
+                return NotFound();
+            }
+            else if (ApplicationRole.Name == "Role-Admin")
+            {
+                return NotFound();
+            }
+            else if (ApplicationRole.Name == "Course-Admin")
+            {
+                return NotFound();
+            }
+            else if (ApplicationRole.Name == "Teacher")
+            {
+                return NotFound();
+            }
+            else if (ApplicationRole.Name == "Students")
+            {
+                return NotFound();
+            }
             return Page();
         }
 
@@ -49,6 +71,7 @@ namespace Learn_Academy.Pages.Roles
             }
 
             ApplicationRole = await _roleManager.FindByIdAsync(id);
+
             IdentityResult roleRuslt = await _roleManager.DeleteAsync(ApplicationRole);
 
             if(roleRuslt.Succeeded)

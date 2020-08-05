@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Learn_Academy.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Courses
 {
+    [Authorize(Roles = "Admin, Course-Admin")]
     public class ManageModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;

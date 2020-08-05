@@ -11,6 +11,7 @@ using Learn_Academy.Controllers;
 
 namespace Learn_Academy.Pages.Courses
 {
+    [Authorize(Roles = "Admin, Course-Admin, Teacher")]
     public class DetailsModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;

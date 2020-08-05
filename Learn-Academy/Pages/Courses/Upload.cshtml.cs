@@ -7,9 +7,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Learn_Academy.Utilities;
 using Learn_Academy.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Courses
 {
+    [Authorize(Roles = "Admin, Course-Admin, Teacher")]
     public class UploadModel : PageModel
     {
         private IHostingEnvironment _environment;

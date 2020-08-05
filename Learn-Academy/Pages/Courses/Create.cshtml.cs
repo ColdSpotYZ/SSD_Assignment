@@ -14,6 +14,7 @@ using Learn_Academy.Utilities;
 
 namespace Learn_Academy.Pages.Courses
 {
+    [Authorize(Roles = "Admin, Course-Admin, Teacher")]
     public class CreateModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
@@ -38,6 +39,7 @@ namespace Learn_Academy.Pages.Courses
             {
                 return Page();
             }
+            Course.Author = User.Identity.Name;
             _context.Course.Add(Course);
             //await _context.SaveChangesAsync();
 

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Learn_Academy.Pages.Courses
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Course-Admin, Teacher")]
     public class EditModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
@@ -38,7 +38,13 @@ namespace Learn_Academy.Pages.Courses
             {
                 return NotFound();
             }
-            return Page();
+
+            if (Course.Author == User.Identity.Name)
+            {
+                return Page();
+            }
+
+            return NotFound();
         }
 
         public async Task<IActionResult> OnPostAsync()
