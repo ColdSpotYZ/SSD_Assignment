@@ -379,6 +379,7 @@ C:\Users\darie\source\repos\SSD_Assignment2\Learn-Academy\obj\Debug\netcoreapp2.
 C:\Users\darie\source\repos\SSD_Assignment2\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.dll
 C:\Users\darie\source\repos\SSD_Assignment2\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.pdb
 C:\Users\darie\source\repos\SSD_Assignment2\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csproj.CopyComplete
+C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\View.g.cshtml.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\bin\Debug\netcoreapp2.2\appsettings.Development.json
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\bin\Debug\netcoreapp2.2\appsettings.json
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
@@ -446,6 +447,7 @@ C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\My-Courses\Index.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\purchase.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\Upload.cshtml.g.cs
+C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\View.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Error.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Index.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Privacy.cshtml.g.cs
@@ -479,4 +481,3 @@ C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.pdb
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.genruntimeconfig.cache
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csproj.CopyComplete
-C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\View.g.cshtml.cs
