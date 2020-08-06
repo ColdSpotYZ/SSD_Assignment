@@ -1,0 +1,11 @@
+﻿@page
+@model Learn_Academy.Pages.Courses.ViewModel
+@using Learn_Academy.Models;
+@using Microsoft.EntityFrameworkCore;
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<video src="~/uploads/videos/@Html.Raw( ( (Course) ViewData["Video"] ).video.ToString() )" width="100%" height="100%" controls></video>
+

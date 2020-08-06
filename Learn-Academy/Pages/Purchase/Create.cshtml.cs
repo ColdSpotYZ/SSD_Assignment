@@ -104,22 +104,22 @@ namespace Learn_Academy.Pages.Purchase
 
 
             _context.Membership.Add(Membership);
-            //await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-            if (await _context.SaveChangesAsync() > 0)
-            {
-                // Create an auditrecord object
-                var auditrecord = new AuditRecord();
-                auditrecord.AuditActionType = "Add Purchase Record";
-                auditrecord.DateTimeStamp = DateTime.Now;
-                auditrecord.KeyCourseFieldID = 1000;
-                // Get current logged-in user
-                var userID = User.Identity.Name.ToString();
-                auditrecord.Username = userID;
+            //if (await _context.SaveChangesAsync() > 0)
+            //{
+            //    // Create an auditrecord object
+            //    var auditrecord = new AuditRecord();
+            //    auditrecord.AuditActionType = "Add Purchase Record";
+            //    auditrecord.DateTimeStamp = DateTime.Now;
+            //    auditrecord.KeyCourseFieldID = 1000;
+            //    // Get current logged-in user
+            //    var userID = User.Identity.Name.ToString();
+            //    auditrecord.Username = userID;
 
-                _context.AuditRecords.Add(auditrecord);
-                await _context.SaveChangesAsync();
-            }
+            //    _context.AuditRecords.Add(auditrecord);
+            //    await _context.SaveChangesAsync();
+            //}
 
             return RedirectToPage("./Index");
         }

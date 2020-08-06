@@ -35,6 +35,7 @@ namespace Learn_Academy.Pages.Courses
             }
 
             Course = await courses.ToListAsync();
+            ViewData["Course"] = Course;
         }
 
         
