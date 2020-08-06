@@ -24,19 +24,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.Testimonials[0].Details)
             </th>
+            <th>
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Testimonials)
         {
-            <tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+            @if (User.IsInRole("Admin") || User.IsInRole("Course-Admin") || User.IsInRole("Role-Admin"))
+            {
                 <td>
-                    @Html.DisplayFor(modelItem => item.Author)
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Details)
-                </td>
-            </tr>
+            }
+        </tr>
+
         }
     </tbody>
 </table>
