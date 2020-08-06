@@ -445,11 +445,6 @@ C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\Manage.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\My-Courses\Index.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\purchase.cshtml.g.cs
-C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\Ratings\Create.cshtml.g.cs
-C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\Ratings\Delete.cshtml.g.cs
-C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\Ratings\Details.cshtml.g.cs
-C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\Ratings\Edit.cshtml.g.cs
-C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\Ratings\Index.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\Upload.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Error.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Index.cshtml.g.cs
