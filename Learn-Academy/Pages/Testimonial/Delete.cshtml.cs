@@ -36,13 +36,12 @@ namespace Learn_Academy.Pages.Testimonial
             {
                 return NotFound();
             }
-
-            if (Testimonials.Author != User.Identity.Name)
+            if (Testimonials.Author == User.Identity.Name || User.IsInRole("Admin") || User.IsInRole("Role-Admin") || User.IsInRole("Course-Admin"))
             {
-                return NotFound();
-            }    
+                return Page();
+            }
 
-            return Page();
+            return NotFound();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
@@ -51,13 +50,16 @@ namespace Learn_Academy.Pages.Testimonial
             {
                 return NotFound();
             }
-
+            
             Testimonials = await _context.Testimonials.FindAsync(id);
 
-            if (Testimonials != null)
+            if (Testimonials.Author == User.Identity.Name || User.IsInRole("Admin") || User.IsInRole("Role-Admin") || User.IsInRole("Course-Admin"))
             {
-                _context.Testimonials.Remove(Testimonials);
-                await _context.SaveChangesAsync();
+                if (Testimonials != null)
+                {
+                    _context.Testimonials.Remove(Testimonials);
+                    await _context.SaveChangesAsync();
+                }
             }
 
             return RedirectToPage("./Index");

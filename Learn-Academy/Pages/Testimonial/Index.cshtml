@@ -8,10 +8,13 @@
 }
 
 <h1>Index</h1>
+@if (signInManager.IsSignedIn(User))
+{
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+}
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>

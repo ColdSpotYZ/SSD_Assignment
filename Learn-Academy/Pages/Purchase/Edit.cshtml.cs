@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Purchase
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Role-Admin, Course-Admin")]
     public class EditModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;

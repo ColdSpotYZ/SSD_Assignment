@@ -35,7 +35,13 @@ namespace Learn_Academy.Pages.Testimonial
             {
                 return NotFound();
             }
-            return Page();
+            if (Testimonials.Author == User.Identity.Name || User.IsInRole("Admin") || User.IsInRole("Role-Admin") || User.IsInRole("Course-Admin"))
+            {
+                return Page();
+
+            }
+
+            return NotFound();
         }
     }
 }
