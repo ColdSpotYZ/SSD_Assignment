@@ -60,6 +60,7 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
+            [RegularExpression(pattern: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!()-.?[]_`~;:@$%^&*+=", ErrorMessage = "Please enter a valid name")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
@@ -68,6 +69,7 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Display(Name = "Full Name")]
+            [RegularExpression(pattern: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.", ErrorMessage = "Please enter a valid name")]
             public string FullName { get; set; }
         }
 
@@ -77,7 +79,7 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
             var ipAddress = Request.HttpContext.Connection.RemoteIpAddress;
             if (ipAddress != null) userIP = ipAddress.MapToIPv4().ToString();
 
-            var captchaResponse = Request.Form["g-recaptcha-response"];
+            var captchaResponse = Request.Form["g -recaptcha-response"];
             var payload = string.Format("&secret={0}&remoteip={1}&response={2}",
                 "6LeVnboZAAAAAHssNKqDOEXH6kfNJVJlOjAKjJZc",
                 userIP,
