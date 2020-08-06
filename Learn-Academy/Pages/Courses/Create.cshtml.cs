@@ -44,6 +44,7 @@ namespace Learn_Academy.Pages.Courses
 
             }
             //await _context.SaveChangesAsync();
+            Course.image = "Default.jpg";
 
             if (await _context.SaveChangesAsync() > 0)
             {

@@ -144,6 +144,10 @@ namespace Learn_Academy.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("image");
+
+                    b.Property<string>("video");
+
                     b.HasKey("ID");
 
                     b.ToTable("Course");

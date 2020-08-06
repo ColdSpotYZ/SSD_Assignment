@@ -1,8 +1,10 @@
 ﻿@page
 @model Learn_Academy.Pages.Courses.IndexModel
+@using Learn_Academy.Models;
+@using Microsoft.EntityFrameworkCore;
 @inject Microsoft.AspNetCore.Identity.SignInManager<Learn_Academy.Models.ApplicationUser> signInManager;
 @section Scripts
-{
+    {
     <script src="@Url.Content("https://kit.fontawesome.com/9c3fdd9015.js")"></script>
     <script src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")"></script>
     <script src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js")"></script>
@@ -109,7 +111,7 @@
 
 <div id="banner" class="draft-container-wrap">
     <div class="draft-container">
-        <img class="draft-image img-fluid" src="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="Experience" />
+        <img class="draft-image img-fluid" src=https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"" alt="Experience" />
         <div class="draft-text">
             <div class="custom-wrap-Titles">
                 <h1 style="font-size: 40px;">
@@ -139,7 +141,8 @@
     {
         <a asp-page="./Details" asp-route-id="@item.ID" style="text-decoration:none;color:black;">
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="Avatar" style="width: 100%">
+                @*https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80*@
+                <img src="~/uploads/image/@Html.Raw(item.image)" alt="Avatar" style="width: 100%">
                 <div class="container">
                     <h4><b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
                     <p>@Html.DisplayFor(modelItem => item.Author)</p>

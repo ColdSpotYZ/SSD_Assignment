@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Learn_Academy.Utilities;
 using Learn_Academy.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Learn_Academy.Pages.Courses
 {
@@ -42,7 +43,7 @@ namespace Learn_Academy.Pages.Courses
             {
                 return Page();
             }
-            var fileV = Path.Combine(_environment.ContentRootPath, "uploads", "videos", untrustedFileNameV);
+            var fileV = Path.Combine(_environment.WebRootPath, "uploads", "videos", untrustedFileNameV);
             using (var fileStream = new FileStream(fileV, FileMode.Create))
             {
                 await UploadV.CopyToAsync(fileStream);
@@ -54,12 +55,16 @@ namespace Learn_Academy.Pages.Courses
             {
                 return Page();
             }
-            var fileI = Path.Combine(_environment.ContentRootPath, "uploads", "image", untrustedFileNameI);
+            var fileI = Path.Combine(_environment.WebRootPath, "uploads", "image", untrustedFileNameI);
             using (var fileStream = new FileStream(fileI, FileMode.Create))
             {
                 await UploadI.CopyToAsync(fileStream);
             }
 
+            var chosen_course = await _context.Course.FirstOrDefaultAsync(m => m.ID == id);
+            chosen_course.image = untrustedFileNameI;
+            chosen_course.video = untrustedFileNameV;
+            await _context.SaveChangesAsync();
             return RedirectToPage("/Courses/My-Courses/Index");
         }
         public void OnGet()
