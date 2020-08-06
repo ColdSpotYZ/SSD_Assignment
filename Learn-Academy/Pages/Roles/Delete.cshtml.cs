@@ -42,32 +42,34 @@ namespace Learn_Academy.Pages.Roles
             {
                 return Page();
             }
+            
+            else if (User.IsInRole("Role-Admin"))
+            {
+                if (ApplicationRole.Name == "Admin")
+                {
+                    return NotFound();
+                }
 
-            if (ApplicationRole.Name == "Admin")
-            {
-                return NotFound();
-            }
-
-            else if (ApplicationRole.Name == "Role-Admin")
-            {
-                return NotFound();
-            }
-            else if (ApplicationRole.Name == "Course-Admin")
-            {
-                return NotFound();
-            }
-            else if (ApplicationRole.Name == "Teacher")
-            {
-                return NotFound();
-            }
-            else if (ApplicationRole.Name == "Students")
-            {
-                return NotFound();
-            }
-
-            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
-            {
-                return Page();
+                else if (ApplicationRole.Name == "Role-Admin")
+                {
+                    return NotFound();
+                }
+                else if (ApplicationRole.Name == "Course-Admin")
+                {
+                    return NotFound();
+                }
+                else if (ApplicationRole.Name == "Teacher")
+                {
+                    return NotFound();
+                }
+                else if (ApplicationRole.Name == "Students")
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Page();
+                }
             }
 
             return NotFound();
