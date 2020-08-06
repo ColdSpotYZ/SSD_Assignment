@@ -38,10 +38,16 @@ namespace Learn_Academy.Pages.Roles
                 return NotFound();
             }
 
+            if (User.IsInRole("Admin"))
+            {
+                return Page();
+            }
+
             if (ApplicationRole.Name == "Admin")
             {
                 return NotFound();
             }
+
             else if (ApplicationRole.Name == "Role-Admin")
             {
                 return NotFound();
@@ -75,25 +81,30 @@ namespace Learn_Academy.Pages.Roles
             }
 
             ApplicationRole = await _roleManager.FindByIdAsync(id);
-            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
+
+            if (User.IsInRole("Author") || ApplicationRole.Name != "Admin" || ApplicationRole.Name != "Role-Admin" || ApplicationRole.Name != "Course-Admin" || ApplicationRole.Name != "Teacher" || ApplicationRole.Name != "Students")
             {
-                IdentityResult roleRuslt = await _roleManager.DeleteAsync(ApplicationRole);
-
-                if (roleRuslt.Succeeded)
+                if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
                 {
-                    // Create an auditrecord object
-                    var auditrecord = new AuditRecord();
-                    auditrecord.AuditActionType = "Delete Role Record";
-                    auditrecord.DateTimeStamp = DateTime.Now;
-                    auditrecord.KeyCourseFieldID = 998;
-                    // Get current logged-in user
-                    var userID = User.Identity.Name.ToString();
-                    auditrecord.Username = userID;
+                    IdentityResult roleRuslt = await _roleManager.DeleteAsync(ApplicationRole);
 
-                    _context.AuditRecords.Add(auditrecord);
-                    await _context.SaveChangesAsync();
+                    if (roleRuslt.Succeeded)
+                    {
+                        // Create an auditrecord object
+                        var auditrecord = new AuditRecord();
+                        auditrecord.AuditActionType = "Delete Role Record";
+                        auditrecord.DateTimeStamp = DateTime.Now;
+                        auditrecord.KeyCourseFieldID = 998;
+                        // Get current logged-in user
+                        var userID = User.Identity.Name.ToString();
+                        auditrecord.Username = userID;
+
+                        _context.AuditRecords.Add(auditrecord);
+                        await _context.SaveChangesAsync();
+                    }
                 }
             }
+            
                 
 
             return RedirectToPage("./Index");
