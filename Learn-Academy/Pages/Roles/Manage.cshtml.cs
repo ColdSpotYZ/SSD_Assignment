@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Roles
 {
-    [Authorize(Roles = "Admin, Role-Admin")]
     public class ManageModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
@@ -57,10 +56,16 @@ namespace Learn_Academy.Pages.Roles
                 var userobj = _context.Users.SingleOrDefault(s => s.Id == oParam.UserId);
                 strListUsersInRole += "[" + userobj.UserName + "] ";
             }
-            return strListUsersInRole;
+            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
+            {
+                return strListUsersInRole;
+            }
+
+            return null;
+
         }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {   //HTTPGet  - when form is being loaded
             //get list of roles and users
             IQueryable<string> RoleQuery = from m in _roleManager.Roles orderby m.Name select m.Name;
@@ -72,8 +77,13 @@ namespace Learn_Academy.Pages.Roles
             var roles = from r in _roleManager.Roles
                         select r;
             Listroles = await roles.ToListAsync();
-        }
+            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
+            {
+                return Page();
+            }
 
+            return NotFound();
+        }
 
         public async Task<IActionResult> OnPostAsync(string selectedusername, string selectedrolename)
         {
@@ -86,27 +96,34 @@ namespace Learn_Academy.Pages.Roles
             ApplicationUser AppUser = _context.Users.SingleOrDefault(u => u.UserName == selectedusername);
             ApplicationRole AppRole = await _roleManager.FindByNameAsync(selectedrolename);
 
-            IdentityResult roleResult = await _userManager.AddToRoleAsync(AppUser, AppRole.Name);
-
-            if (roleResult.Succeeded)
+            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
             {
-                TempData["message"] = "Role added to this user successfully";
-                // Create an auditrecord object
-                var auditrecord = new AuditRecord();
-                auditrecord.AuditActionType = "Add User Role Record";
-                auditrecord.DateTimeStamp = DateTime.Now;
-                auditrecord.KeyCourseFieldID = 997;
-                // Get current logged-in user
-                var userID = User.Identity.Name.ToString();
-                auditrecord.Username = userID;
+                IdentityResult roleResult = await _userManager.AddToRoleAsync(AppUser, AppRole.Name);
 
-                _context.AuditRecords.Add(auditrecord);
-                await _context.SaveChangesAsync();
+                if (roleResult.Succeeded)
+                {
+                    TempData["message"] = "Role added to this user successfully";
+                    // Create an auditrecord object
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Add User Role Record";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.KeyCourseFieldID = 997;
+                    // Get current logged-in user
+                    var userID = User.Identity.Name.ToString();
+                    auditrecord.Username = userID;
 
-                return RedirectToPage("Manage");
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToPage("Manage");
+                }
+
+                return Page();
             }
 
-            return RedirectToPage("Manage");
+            return NotFound();
+
+
         }
 
         public async Task<IActionResult> OnPostDeleteUserRoleAsync(string delusername, string delrolename)
@@ -116,27 +133,30 @@ namespace Learn_Academy.Pages.Roles
             {
                 return RedirectToPage("Manage");
             }
-
-            ApplicationUser user = _context.Users.Where(u => u.UserName.Equals(delusername, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-
-            if (await _userManager.IsInRoleAsync(user, delrolename))
+            if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
             {
-                await _userManager.RemoveFromRoleAsync(user, delrolename);
+                ApplicationUser user = _context.Users.Where(u => u.UserName.Equals(delusername, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
-                // Create an auditrecord object
-                var auditrecord = new AuditRecord();
-                auditrecord.AuditActionType = "Delete User Role Record";
-                auditrecord.DateTimeStamp = DateTime.Now;
-                auditrecord.KeyCourseFieldID = 997;
-                // Get current logged-in user
-                var userID = User.Identity.Name.ToString();
-                auditrecord.Username = userID;
+                if (await _userManager.IsInRoleAsync(user, delrolename))
+                {
+                    await _userManager.RemoveFromRoleAsync(user, delrolename);
 
-                _context.AuditRecords.Add(auditrecord);
-                await _context.SaveChangesAsync();
+                    // Create an auditrecord object
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Delete User Role Record";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.KeyCourseFieldID = 997;
+                    // Get current logged-in user
+                    var userID = User.Identity.Name.ToString();
+                    auditrecord.Username = userID;
 
-                TempData["message"] = "Role removed from this user successfully";
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
+
+                    TempData["message"] = "Role removed from this user successfully";
+                }
             }
+
 
             return RedirectToPage("Manage");
         }
