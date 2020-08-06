@@ -63,11 +63,7 @@
                         {
                             <li class="nav-item custom-nav-item">
                                 <div class="dropdown">
-                                    <a class="nav-link text-dark dropbtn" asp-area=""><span>Manage</span></a>
-                                    <div class="dropdown-content">
-                                        <a asp-page="/Roles/Index">Roles</a>
-                                        <a asp-page="/Audit/Index">Audits</a>
-                                    </div>
+                                    <a class="nav-link text-dark dropbtn" asp-area="" asp-page="/Roles/Index"><span>Manage</span></a>
                                 </div>
                             </li>
                         }
@@ -75,11 +71,7 @@
                         {
                             <li class="nav-item custom-nav-item">
                                 <div class="dropdown">
-                                    <a class="nav-link text-dark dropbtn" asp-area=""><span>Manage</span></a>
-                                    <div class="dropdown-content">
-                                        <a asp-page="/Course/Manage">Course</a>
-                                        <a asp-page="/Audit/Index">Audits</a>
-                                    </div>
+                                    <a class="nav-link text-dark dropbtn" asp-area="" asp-page="/Course/Manage"><span>Manage</span></a>
                                 </div>
                             </li>
                         }
