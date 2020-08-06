@@ -20,7 +20,12 @@ namespace Learn_Academy.Pages.Audit
 
         public IActionResult OnGet()
         {
-            return Page();
+            if (User.IsInRole("Admin"))
+            {
+                return Page();
+            }
+
+            return NotFound();
         }
 
         [BindProperty]
@@ -32,8 +37,10 @@ namespace Learn_Academy.Pages.Audit
             {
                 return Page();
             }
-
-            _context.AuditRecords.Add(AuditRecord);
+            if (User.IsInRole("Admin"))
+            {
+                _context.AuditRecords.Add(AuditRecord);
+            }
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

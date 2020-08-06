@@ -20,9 +20,16 @@ namespace Learn_Academy.Pages.Audit
 
         public IList<AuditRecord> AuditRecord { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
-            AuditRecord = await _context.AuditRecords.ToListAsync();
+            if (User.IsInRole("Admin"))
+            {
+                AuditRecord = await _context.AuditRecords.ToListAsync();
+
+                return Page();
+            }
+
+            return NotFound();
         }
     }
 }

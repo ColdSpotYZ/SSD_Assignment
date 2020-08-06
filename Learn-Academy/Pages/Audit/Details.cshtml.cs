@@ -33,7 +33,13 @@ namespace Learn_Academy.Pages.Audit
             {
                 return NotFound();
             }
-            return Page();
+
+            if (User.IsInRole("Admin"))
+            {
+                return Page();
+            }
+
+            return NotFound();
         }
     }
 }

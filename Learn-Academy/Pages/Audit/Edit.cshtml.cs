@@ -35,7 +35,13 @@ namespace Learn_Academy.Pages.Audit
             {
                 return NotFound();
             }
-            return Page();
+
+            if (User.IsInRole("Admin"))
+            {
+                return Page();
+            }
+
+            return NotFound();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -49,7 +55,10 @@ namespace Learn_Academy.Pages.Audit
 
             try
             {
-                await _context.SaveChangesAsync();
+                if (User.IsInRole("Admin"))
+                {
+                    await _context.SaveChangesAsync();
+                }
             }
             catch (DbUpdateConcurrencyException)
             {

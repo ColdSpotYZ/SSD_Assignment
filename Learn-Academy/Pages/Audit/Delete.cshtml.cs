@@ -34,7 +34,13 @@ namespace Learn_Academy.Pages.Audit
             {
                 return NotFound();
             }
-            return Page();
+
+            if (User.IsInRole("Admin"))
+            {
+                return Page();
+            }
+
+            return NotFound();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
@@ -48,7 +54,10 @@ namespace Learn_Academy.Pages.Audit
 
             if (AuditRecord != null)
             {
-                _context.AuditRecords.Remove(AuditRecord);
+                if (User.IsInRole("Admin"))
+                {
+                    _context.AuditRecords.Remove(AuditRecord);
+                }
                 await _context.SaveChangesAsync();
             }
 
