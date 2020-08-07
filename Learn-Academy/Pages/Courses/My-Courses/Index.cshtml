@@ -1,7 +1,9 @@
 ﻿@page
 @inject Microsoft.AspNetCore.Identity.SignInManager<Learn_Academy.Models.ApplicationUser> signInManager;
-@* @model Learn_Academy.Pages.Courses.My_Courses.IndexModel *@
-@model Learn_Academy.Pages.Courses.IndexModel
+@model Learn_Academy.Pages.Courses.My_Courses.IndexModel
+@using Learn_Academy.Models
+@using Microsoft.EntityFrameworkCore
+@*@model Learn_Academy.Pages.Courses.IndexModel*@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -39,7 +41,7 @@
 {
     <a asp-page="../Create">Create New</a>
     <div class="d-flex container-courses-wrap">
-        @foreach (var item in Model.Course)
+        @foreach (var item in (List<Course>)ViewData["Course"])
         {
             @if (item.Author == User.Identity.Name)
             {

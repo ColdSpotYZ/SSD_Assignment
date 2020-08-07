@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authorization;
+using Learn_Academy.Models;
 
 namespace Learn_Academy.Pages.Courses.My_Courses
 {
-    [Authorize("Teacher")]
+    [Authorize(Roles = "Teacher")]
     public class IndexModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
@@ -18,9 +19,16 @@ namespace Learn_Academy.Pages.Courses.My_Courses
             _context = context;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            
+            List<Course> ListofCourses = _context.Course.ToList();
+            ViewData["Course"] = ListofCourses;
+            if (User.IsInRole("Teacher"))
+            {
+                return Page();
+            }
+            return NotFound();
         }
     }
 }
