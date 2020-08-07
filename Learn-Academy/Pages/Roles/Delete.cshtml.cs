@@ -84,32 +84,70 @@ namespace Learn_Academy.Pages.Roles
 
             ApplicationRole = await _roleManager.FindByIdAsync(id);
 
-            if (User.IsInRole("Author") || ApplicationRole.Name != "Admin" || ApplicationRole.Name != "Role-Admin" || ApplicationRole.Name != "Course-Admin" || ApplicationRole.Name != "Teacher" || ApplicationRole.Name != "Students")
+            if (User.IsInRole("Role-Admin"))
             {
-                if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
+                if (ApplicationRole.Name != "Admin")
                 {
-                    IdentityResult roleRuslt = await _roleManager.DeleteAsync(ApplicationRole);
-
-                    if (roleRuslt.Succeeded)
+                    if (ApplicationRole.Name != "Role-Admin")
                     {
-                        // Create an auditrecord object
-                        var auditrecord = new AuditRecord();
-                        auditrecord.AuditActionType = "Delete Role Record";
-                        auditrecord.DateTimeStamp = DateTime.Now;
-                        auditrecord.KeyCourseFieldID = 998;
-                        // Get current logged-in user
-                        var userID = User.Identity.Name.ToString();
-                        auditrecord.Username = userID;
+                        if (ApplicationRole.Name != "Course-Admin")
+                        {
+                            if (ApplicationRole.Name != "Teacher")
+                            {
+                                if (ApplicationRole.Name != "Students")
+                                {
+                                    if (User.IsInRole("Admin") || User.IsInRole("Role-Admin"))
+                                    {
+                                        IdentityResult roleRuslt = await _roleManager.DeleteAsync(ApplicationRole);
 
-                        _context.AuditRecords.Add(auditrecord);
-                        await _context.SaveChangesAsync();
+                                        if (roleRuslt.Succeeded)
+                                        {
+                                            // Create an auditrecord object
+                                            var auditrecord = new AuditRecord();
+                                            auditrecord.AuditActionType = "Delete Role Record";
+                                            auditrecord.DateTimeStamp = DateTime.Now;
+                                            auditrecord.KeyCourseFieldID = 998;
+                                            // Get current logged-in user
+                                            var userID = User.Identity.Name.ToString();
+                                            auditrecord.Username = userID;
+
+                                            _context.AuditRecords.Add(auditrecord);
+                                            await _context.SaveChangesAsync();
+                                        }
+                                        return RedirectToPage("./Index");
+
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-            }
-            
                 
+            }
+            else if (User.IsInRole("Admin"))
+            {
+                IdentityResult roleRuslt = await _roleManager.DeleteAsync(ApplicationRole);
 
-            return RedirectToPage("./Index");
+                if (roleRuslt.Succeeded)
+                {
+                    // Create an auditrecord object
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Delete Role Record";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.KeyCourseFieldID = 998;
+                    // Get current logged-in user
+                    var userID = User.Identity.Name.ToString();
+                    auditrecord.Username = userID;
+
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
+                }
+
+                return RedirectToPage("./Index");
+
+            }
+
+            return NotFound();
 
         }
 

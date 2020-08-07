@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Purchase
 {
+    [Authorize]
     public class DetailsModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;

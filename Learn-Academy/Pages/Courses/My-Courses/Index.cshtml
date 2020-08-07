@@ -44,7 +44,7 @@
             @if (item.Author == User.Identity.Name)
             {
                 <div class="card">
-                    <img src="https://st.depositphotos.com/1364311/1336/i/950/depositphotos_13360079-stock-photo-girl-studying-in-library.jpg" alt="Avatar" style="width: 100%">
+                    <img src="~/uploads/image/@Html.Raw(item.image)" alt="No picture" style="width: 100%">
                     <div class="container">
                         <h4><b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
                         @if (signInManager.IsSignedIn(User) && (User.IsInRole("Teacher") || User.IsInRole("Admin")))
@@ -64,3 +64,6 @@
 
     </div>
 }
+<div>
+    To edit and add videos, <span><a asp-page="/Courses/Upload">Click here</a></span>
+</div>

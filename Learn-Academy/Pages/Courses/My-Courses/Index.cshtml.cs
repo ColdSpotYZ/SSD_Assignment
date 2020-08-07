@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Courses.My_Courses
 {
+    [Authorize("Teacher")]
     public class IndexModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;

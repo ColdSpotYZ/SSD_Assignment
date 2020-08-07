@@ -76,14 +76,14 @@ namespace Learn_Academy.Pages.Roles
 
                     _context.AuditRecords.Add(auditrecord);
                     await _context.SaveChangesAsync();
-
-                    return RedirectToPage("./Index");
-
                 }
-            }
 
-            
-            return RedirectToPage("./Index");
+                return RedirectToPage("./Index");
+
+            }
+            return NotFound();
+
+
         }
 
     }

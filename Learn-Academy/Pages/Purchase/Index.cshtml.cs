@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Learn_Academy.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Purchase
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;
