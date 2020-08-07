@@ -32,7 +32,7 @@ namespace Learn_Academy.Pages.Courses
 
             current_course = await _context.Course.FirstOrDefaultAsync(m => m.ID == id);
             var current_user = await _context.Users.FirstOrDefaultAsync(m => m.Email == User.Identity.Name);
-            var current_membership = await _context.Membership.FirstOrDefaultAsync(m => m.ApplicationUser.Id == current_user.Id);
+            var current_membership = await _context.Membership.LastOrDefaultAsync(m => m.ApplicationUser.Id == current_user.Id);
 
             if (current_course == null)
             {
@@ -48,7 +48,7 @@ namespace Learn_Academy.Pages.Courses
             }
             else if (current_membership.Plan == 1 || current_membership.Plan == 2 || current_membership.Plan == 3 )
             {
-                if (current_membership.ExpiryDate <= DateTime.Now)
+                if (current_membership.ExpiryDate >= DateTime.Now)
                 {
                     ViewData["Video"] = current_course;
                     return Page();

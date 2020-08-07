@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Learn_Academy.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Learn_Academy.Pages.Purchase
 {
@@ -18,7 +19,10 @@ namespace Learn_Academy.Pages.Purchase
             _context = context;
         }
 
+
         public IList<Membership> Membership { get;set; }
+
+
 
         public async Task OnGetAsync()
         {

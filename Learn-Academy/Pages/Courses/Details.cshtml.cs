@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Learn_Academy.Pages.Courses
 {
-    [Authorize(Roles = "Admin, Course-Admin, Teacher")]
+    [Authorize(Roles = "Admin, Course-Admin, Teacher, Students")]
     public class DetailsModel : PageModel
     {
         private readonly Learn_Academy.Models.Learn_AcademyContext _context;

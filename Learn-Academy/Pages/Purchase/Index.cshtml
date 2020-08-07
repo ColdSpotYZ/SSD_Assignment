@@ -30,7 +30,8 @@
 
 @foreach (var item in Model.Membership)
 {
-    @if (item.ApplicationUser == User.Identity)
+
+    @if (item.ApplicationUser.Email == User.Identity.Name)
     {
         <tr>
             <td>
