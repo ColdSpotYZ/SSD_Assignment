@@ -111,7 +111,7 @@
 
 <div id="banner" class="draft-container-wrap">
     <div class="draft-container">
-        <img class="draft-image img-fluid" src=https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"" alt="Experience" />
+        <img class="draft-image img-fluid" src="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="Experience" />
         <div class="draft-text">
             <div class="custom-wrap-Titles">
                 <h1 style="font-size: 40px;">
@@ -139,27 +139,30 @@
 <div class="d-flex container-courses-wrap">
     @foreach (var item in Model.Course)
     {
-        <a asp-page="./Details" asp-route-id="@item.ID" style="text-decoration:none;color:black;">
-            <div class="card">
-                @*https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80*@
-                <img src="~/uploads/image/@Html.Raw(item.image)" alt="Avatar" style="width: 100%">
-                <div class="container">
-                    <h4><b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
-                    <p>@Html.DisplayFor(modelItem => item.Author)</p>
-                    <!-- Change this to updated price -->
-                    <p style="font-size: 2em;">@Html.DisplayFor(modelItem => item.Category)</p>
-                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-                    {
-                        <div>
-                            <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                            <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                            <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                        </div>
-                    }
+        if (item.video != null)
+        {
+            <a asp-page="./Details" asp-route-id="@item.ID" style="text-decoration:none;color:black;">
+                <div class="card">
+                    @*https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80*@
+                    <img src="~/uploads/image/@Html.Raw(item.image)" alt="Avatar" style="width: 100%">
+                    <div class="container">
+                        <h4><b>@Html.DisplayFor(modelItem => item.Name)</b></h4>
+                        <p>@Html.DisplayFor(modelItem => item.Author)</p>
+                        <!-- Change this to updated price -->
+                        <p style="font-size: 2em;">@Html.DisplayFor(modelItem => item.Category)</p>
+                        @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <div>
+                                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                            </div>
+                        }
 
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        }
     }
 </div>
 
