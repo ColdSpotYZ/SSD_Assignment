@@ -2,9 +2,10 @@
 > Make sure ASP.Net Core 2.2 is installed
 
 ## Members
+
 | Member            | Feature 1          | Feature 2  | Feature 3  |
 | ----------------- |:------------------:|: ---------:| --------- :|
-| Jason Chua        | CRUD               | Upload     | Purchase   |     
+| Jason Chua        | CRUD               | Upload     | Purchase   |
 | Lim Kai Xian      | Authorization      | Testimonial|            |
 | Darien Tan        | Authentication     | Auditing   |            |
 
