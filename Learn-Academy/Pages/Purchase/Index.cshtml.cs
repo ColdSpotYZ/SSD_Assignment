@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Learn_Academy.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Learn_Academy.Pages.Purchase
 {
@@ -27,6 +28,9 @@ namespace Learn_Academy.Pages.Purchase
         public async Task OnGetAsync()
         {
             Membership = await _context.Membership.ToListAsync();
+            var current_user = await _context.Users.FirstOrDefaultAsync(m => m.Email == User.Identity.Name);
+            var current_membership =  _context.Membership.Where(m => m.Id == current_user.Id).ToList();
+            ViewData["Membership"] = current_membership;
         }
     }
 }
