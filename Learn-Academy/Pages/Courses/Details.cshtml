@@ -26,14 +26,16 @@
         </div>
         <div style="text-align:center;">
             @{bool NotAMember = true;
-                @foreach (var item in (DbSet<Membership>)ViewData["Membership"])
+                @foreach (var item in (List<Membership>)ViewData["Membership"])
                 {
-                    @if (item.ApplicationUser == this.User.Identity && DateTime.Now >= item.ExpiryDate)
+                    @if (item.ApplicationUser.Email == User.Identity.Name && DateTime.Now <= item.ExpiryDate)
                     {
-                        <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page="/Course/View"><span>Start Course</span></a></div>
+                        <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-route-id="@((int)ViewData["CurrentID"])" asp-page="/Courses/View"><span>Start Course</span></a></div>
                         NotAMember = false;
+                        <script>console.log('test1')</script>
                         break;
                     }
+
                 }
                 @if (NotAMember)
                 {

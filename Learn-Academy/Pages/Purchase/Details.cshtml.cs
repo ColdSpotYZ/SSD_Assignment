@@ -35,7 +35,7 @@ namespace Learn_Academy.Pages.Purchase
                 return NotFound();
             }
 
-            if (Membership.ApplicationUser != User.Identity)
+            if (Membership.ApplicationUser.Email != User.Identity.Name)
             {
                 return NotFound();
             }

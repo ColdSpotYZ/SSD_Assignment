@@ -29,8 +29,12 @@ namespace Learn_Academy.Pages.Courses
                 return NotFound();
             }
 
+            var Currentid = id;
+            ViewData["CurrentID"] = Currentid;
+            var current_user = await _context.Users.FirstOrDefaultAsync(m => m.Email == User.Identity.Name);
+            var current_membership = _context.Membership.Where(m => m.Id == current_user.Id).ToList();
+            ViewData["Membership"] = current_membership;
 
-            ViewData["Membership"] = _context.Membership;
 
             var temp = _context.Membership;
             Course = await _context.Course.FirstOrDefaultAsync(m => m.ID == id);
