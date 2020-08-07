@@ -38,7 +38,7 @@ namespace Learn_Academy.Pages.Courses
             {
                 return NotFound();
             }
-            if ( current_membership == null )
+            if ( current_membership == null)
             {
                 if ( User.IsInRole("Admin") )
                 {
@@ -48,10 +48,12 @@ namespace Learn_Academy.Pages.Courses
             }
             else if (current_membership.Plan == 1 || current_membership.Plan == 2 || current_membership.Plan == 3 )
             {
-                ViewData["Video"] = current_course;
-                return Page();
+                if (current_membership.ExpiryDate <= DateTime.Now)
+                {
+                    ViewData["Video"] = current_course;
+                    return Page();
+                }
             }
-            
 
             return NotFound();
         }
