@@ -32,8 +32,6 @@
     <Folder Include="Controllers\" />
     <Folder Include="uploads\image\" />
     <Folder Include="uploads\videos\" />
-    <Folder Include="wwwroot\uploads\image\" />
-    <Folder Include="wwwroot\uploads\videos\" />
   </ItemGroup>
 
 

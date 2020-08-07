@@ -42,41 +42,48 @@ namespace Learn_Academy.Pages.Courses
             {
                 return NotFound();
             }
-            string untrustedFileNameV = id.ToString() + ".mp4";
-            var formfilecontent = await FileHelpers.ProcessFormFile<IFormFile>(UploadV, ModelState, _permittedExtensionsV, 100000000);
-            if(formfilecontent.Length == 0)
+            if (UploadV != null)
             {
-                ModelState.AddModelError(string.Empty, "Video too large");
+                string untrustedFileNameV = id.ToString() + ".mp4";
+                var formfilecontent = await FileHelpers.ProcessFormFile<IFormFile>(UploadV, ModelState, _permittedExtensionsV, 100000000);
+                if (formfilecontent.Length == 0)
+                {
+                    ModelState.AddModelError(string.Empty, "Video too large");
+                }
+                if (!ModelState.IsValid)
+                {
+                    return Page();
+                }
+                var fileV = Path.Combine(_environment.WebRootPath, "uploads", "videos", untrustedFileNameV);
+                using (var fileStream = new FileStream(fileV, FileMode.Create))
+                {
+                    await UploadV.CopyToAsync(fileStream);
+                }
+                chosen_course.video = untrustedFileNameV;
             }
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-            var fileV = Path.Combine(_environment.WebRootPath, "uploads", "videos", untrustedFileNameV);
-            using (var fileStream = new FileStream(fileV, FileMode.Create))
-            {
-                await UploadV.CopyToAsync(fileStream);
-            }
-
-            string untrustedFileNameI = id.ToString() + "." + Path.GetFileName(UploadI.FileName).ToString().Substring(Path.GetFileName(UploadI.FileName).ToString().LastIndexOf(".")+1);
             
-            var formfilecontentI = await FileHelpers.ProcessFormFile<IFormFile>(UploadI, ModelState, _permittedExtensionsI, 10000000);
-            if (formfilecontentI.Length == 0)
+            if (UploadI != null)
             {
-                ModelState.AddModelError(string.Empty, "Picture too large");
-            }
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-            var fileI = Path.Combine(_environment.WebRootPath, "uploads", "image", untrustedFileNameI);
-            using (var fileStream = new FileStream(fileI, FileMode.Create))
-            {
-                await UploadI.CopyToAsync(fileStream);
-            }
+                string untrustedFileNameI = id.ToString() + "." + Path.GetFileName(UploadI.FileName).ToString().Substring(Path.GetFileName(UploadI.FileName).ToString().LastIndexOf(".") + 1);
 
-            chosen_course.image = untrustedFileNameI;
-            chosen_course.video = untrustedFileNameV;
+                var formfilecontentI = await FileHelpers.ProcessFormFile<IFormFile>(UploadI, ModelState, _permittedExtensionsI, 10000000);
+                if (formfilecontentI.Length == 0)
+                {
+                    ModelState.AddModelError(string.Empty, "Picture too large");
+                }
+                if (!ModelState.IsValid)
+                {
+                    return Page();
+                }
+                var fileI = Path.Combine(_environment.WebRootPath, "uploads", "image", untrustedFileNameI);
+                using (var fileStream = new FileStream(fileI, FileMode.Create))
+                {
+                    await UploadI.CopyToAsync(fileStream);
+                }
+                chosen_course.image = untrustedFileNameI;
+            }
+            
+            
             await _context.SaveChangesAsync();
             return RedirectToPage("/Courses/My-Courses/Index");
         }
