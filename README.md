@@ -3,11 +3,11 @@
 
 ## Members
 
-| Member            | Feature 1          | Feature 2  | Feature 3  |
-| ----------------- |:------------------:|: ---------:| --------- :|
-| Jason Chua        | CRUD               | Upload     | Purchase   |
-| Lim Kai Xian      | Authorization      | Testimonial|            |
-| Darien Tan        | Authentication     | Auditing   |            |
+|Members|Feature 1|Feature 2|Feature 3|
+|---|:---:|:---:|---:|
+|Jason Chua|CRUD|Upload|Purchase|
+|Lim Kai Xian|Authorization|Testimonial||
+|Darien Tan|Authentication|Auditing||
 
 --- 
 # Instructions
