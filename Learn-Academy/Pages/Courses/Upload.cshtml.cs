@@ -9,6 +9,7 @@ using Learn_Academy.Utilities;
 using Learn_Academy.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Learn_Academy.Pages.Courses
 {
@@ -37,6 +38,7 @@ namespace Learn_Academy.Pages.Courses
 
         public async Task<IActionResult> OnPostAsync()
         {
+            ViewData["Course"] = await _context.Course.ToListAsync();
             var chosen_course = await _context.Course.FirstOrDefaultAsync(m => m.ID == id);
             if (chosen_course.Author != User.Identity.Name && (User.IsInRole("Teacher")))
             {
@@ -87,14 +89,9 @@ namespace Learn_Academy.Pages.Courses
             await _context.SaveChangesAsync();
             return RedirectToPage("/Courses/My-Courses/Index");
         }
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
-            var list = new List<Course>();
-            foreach (var i in _context.Course)
-            {
-                list.Add(new Course() { ID = i.ID, Author = i.Author, Category = i.Category, CourseDate = i.CourseDate, Description = i.Description, Name = i.Name });
-            }
-            ViewData["Course"] = list;
+            ViewData["Course"] = await _context.Course.ToListAsync();
             if (User.IsInRole("Course-Admin") || User.IsInRole("Admin") || User.IsInRole("Teacher"))
             {
                 return Page();
