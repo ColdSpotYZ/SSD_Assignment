@@ -86,7 +86,13 @@ namespace Learn_Academy.Pages.Purchase
                 Console.WriteLine("Invalid page");
                 return Page();
             }
-
+            var current_user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var prev_membership = _context.Membership.LastOrDefault(m => m.ApplicationUser.Id == current_user.Id);
+            if (prev_membership.ExpiryDate >= DateTime.Now)
+            {
+                ModelState.AddModelError(String.Empty, "Membership still in effect.");
+                return Page();
+            }
             Membership.Date = DateTime.Now;
             if (Membership.Plan == 1)
             {
