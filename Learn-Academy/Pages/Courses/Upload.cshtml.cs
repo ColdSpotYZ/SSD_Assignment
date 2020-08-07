@@ -37,8 +37,12 @@ namespace Learn_Academy.Pages.Courses
 
         public async Task<IActionResult> OnPostAsync()
         {
-            string untrustedFileNameV = Path.GetFileName(UploadV.FileName);
-            var fornmfilecontent = await FileHelpers.ProcessFormFile<IFormFile>(UploadV, ModelState, _permittedExtensionsV, 10000000);
+            string untrustedFileNameV = id.ToString() + ".mp4";
+            var formfilecontent = await FileHelpers.ProcessFormFile<IFormFile>(UploadV, ModelState, _permittedExtensionsV, 100000000);
+            if(formfilecontent.Length == 0)
+            {
+                ModelState.AddModelError(string.Empty, "Video too large");
+            }
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -49,8 +53,13 @@ namespace Learn_Academy.Pages.Courses
                 await UploadV.CopyToAsync(fileStream);
             }
 
-            string untrustedFileNameI = Path.GetFileName(UploadI.FileName);
-            var fornmfilecontentI = await FileHelpers.ProcessFormFile<IFormFile>(UploadI, ModelState, _permittedExtensionsI, 10000000);
+            string untrustedFileNameI = id.ToString() + "." + Path.GetFileName(UploadI.FileName).ToString().Substring(Path.GetFileName(UploadI.FileName).ToString().LastIndexOf(".")+1);
+            
+            var formfilecontentI = await FileHelpers.ProcessFormFile<IFormFile>(UploadI, ModelState, _permittedExtensionsI, 10000000);
+            if (formfilecontentI.Length == 0)
+            {
+                ModelState.AddModelError(string.Empty, "Picture too large");
+            }
             if (!ModelState.IsValid)
             {
                 return Page();
