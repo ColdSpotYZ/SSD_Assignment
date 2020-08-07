@@ -9,6 +9,7 @@ using Learn_Academy.Utilities;
 using Learn_Academy.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Learn_Academy.Pages.Courses
 {
@@ -49,6 +50,7 @@ namespace Learn_Academy.Pages.Courses
                 if (formfilecontent.Length == 0)
                 {
                     ModelState.AddModelError(string.Empty, "Video too large");
+                    return Page();
                 }
                 if (!ModelState.IsValid)
                 {
@@ -70,6 +72,7 @@ namespace Learn_Academy.Pages.Courses
                 if (formfilecontentI.Length == 0)
                 {
                     ModelState.AddModelError(string.Empty, "Picture too large");
+                    return Page();
                 }
                 if (!ModelState.IsValid)
                 {
@@ -89,12 +92,7 @@ namespace Learn_Academy.Pages.Courses
         }
         public IActionResult OnGet()
         {
-            var list = new List<Course>();
-            foreach (var i in _context.Course)
-            {
-                list.Add(new Course() { ID = i.ID, Author = i.Author, Category = i.Category, CourseDate = i.CourseDate, Description = i.Description, Name = i.Name });
-            }
-            ViewData["Course"] = list;
+            ViewData["Course"] = _context.Course.ToList();
             if (User.IsInRole("Course-Admin") || User.IsInRole("Admin") || User.IsInRole("Teacher"))
             {
                 return Page();
