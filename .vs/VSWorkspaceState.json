@@ -9,8 +9,8 @@
     "\\Learn-Academy\\Migrations",
     "\\Learn-Academy\\Pages",
     "\\Learn-Academy\\Pages\\Audit",
-    "\\Learn-Academy\\Pages\\Courses"
+    "\\Learn-Academy\\Utilities"
   ],
-  "SelectedNode": "\\Learn-Academy\\appsettings.json",
+  "SelectedNode": "\\Learn-Academy\\Utilities\\FileHelpers.cs",
   "PreviewInSolutionExplorer": false
 }
