@@ -6,6 +6,7 @@
     <link href="@Url.Content("~/css/site.css")" rel="stylesheet" type="text/css" />
 }
 @{
+    Course CurrentCoruse = (Course)ViewData["Current_Course"];
     ViewData["Title"] = "Details";
 }
 
@@ -21,7 +22,7 @@
             <p><span style="color: white;">@Html.DisplayFor(model => model.Course.Author)</span></p>
     </div>
     <div style="background-color:white;position:absolute;width:420px;left:55%;top:20%;border: 1px solid black;text-align:center;padding-top:1%;">
-        <img src="https://st.depositphotos.com/1364311/1336/i/950/depositphotos_13360079-stock-photo-girl-studying-in-library.jpg" style="width:400px;height:auto;" alt="Alternate Text" />
+        <img src="~/uploads/image/@Html.Raw(CurrentCoruse.image)" style="width:400px;height:auto;" alt="Alternate Text" />
         <div style="padding:5%">
         </div>
         <div style="text-align:center;">
@@ -32,14 +33,21 @@
                     {
                         <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-route-id="@((int)ViewData["CurrentID"])" asp-page="/Courses/View"><span>Start Course</span></a></div>
                         NotAMember = false;
-                        <script>console.log('test1')</script>
                         break;
                     }
-
+                    <script>console.log('test')</script>
                 }
+
                 @if (NotAMember)
                 {
-                    <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page="/Purchase/Create"><span>Sign Up Now</span></a></div>
+                    if (CurrentCoruse.Author == User.Identity.Name)
+                    {
+                        <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-route-id="@((int)ViewData["CurrentID"])" asp-page="/Courses/View"><span>See Course</span></a></div>
+                    }
+                    else
+                    {
+                        <div class="custom-cart-button"><a style="padding:10px;text-decoration:none;" class="Add-to-Cart" asp-area="" asp-page="/Purchase/Create"><span>Sign Up Now</span></a></div>
+                    }
 
                 }
             }

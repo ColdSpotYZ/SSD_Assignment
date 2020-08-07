@@ -38,9 +38,14 @@ namespace Learn_Academy.Pages.Courses
             {
                 return NotFound();
             }
-            if ( current_membership == null)
+            
+            if (current_course.video == null)
             {
-                if ( User.IsInRole("Admin") )
+                return RedirectToPage("/Unfinished");
+            }
+            if (current_membership == null)
+            {
+                if (User.IsInRole("Admin") || current_course.Author == User.Identity.Name)
                 {
                     ViewData["Video"] = current_course;
                     return Page();

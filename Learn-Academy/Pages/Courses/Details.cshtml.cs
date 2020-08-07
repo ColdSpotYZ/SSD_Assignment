@@ -35,6 +35,8 @@ namespace Learn_Academy.Pages.Courses
             var current_membership = _context.Membership.Where(m => m.Id == current_user.Id).ToList();
             ViewData["Membership"] = current_membership;
 
+            var current_course = _context.Course.Where(m => m.ID == Currentid).ToList();
+            ViewData["Current_Course"] = current_course[0];
 
             var temp = _context.Membership;
             Course = await _context.Course.FirstOrDefaultAsync(m => m.ID == id);
@@ -42,6 +44,10 @@ namespace Learn_Academy.Pages.Courses
             if (Course == null)
             {
                 return NotFound();
+            }
+            else if (current_course[0].video == null)
+            {
+                return RedirectToPage("/Unfinished");
             }
             return Page();
         }
