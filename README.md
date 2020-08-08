@@ -1,7 +1,7 @@
 # SSD Assignment - Learn Academy
-Requirements
 > Make sure ASP.Net Core 2.2 is installed
-Note
+
+
 > File upload size is limited to 28MB
 
 ## Members
