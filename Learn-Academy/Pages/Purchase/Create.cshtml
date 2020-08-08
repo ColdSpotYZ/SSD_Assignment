@@ -19,12 +19,12 @@
                 <select asp-for="Membership.Plan" class="form-control" id="choice">
                     <option value="1">Monthly</option>
                     <option value="2">Yearly</option>
-                    <option value="3">Decennial</option>
+                    <option value="3">Lifetime</option>
                 </select>
                 <span asp-validation-for="Membership.Plan" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-success" value="Skip Pay" />
+                <input type="submit" class="btn btn-success" value="Skip Pay (For Mr saiful)" />
             </div>
         </form>
         <div class="form-group">
@@ -59,6 +59,13 @@
                     sessionId: '@ViewData["Session_id_2"]'
                 }).then(function (result) {
                     error.innerText = result.error.message
+                });
+            }
+            else if (e.options[e.selectedIndex].value == "3") {
+                stripe.redirectToCheckout({
+                    sessionId: '@ViewData["Session_id_3"]'
+                }).then(function (result) {
+
                 });
             }
         });

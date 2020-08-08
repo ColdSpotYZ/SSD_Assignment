@@ -30,13 +30,14 @@ namespace Learn_Academy.Pages.Purchase
             }
 
             Membership = await _context.Membership.FirstOrDefaultAsync(m => m.PurchaseId == id);
+            var current_user = await _context.Users.FirstOrDefaultAsync(m => m.Id == Membership.Id);
 
             if (Membership == null)
             {
                 return NotFound();
             }
 
-            if (Membership.ApplicationUser.Email != User.Identity.Name)
+            if (current_user.Email != User.Identity.Name)
             {
                 return NotFound();
             }

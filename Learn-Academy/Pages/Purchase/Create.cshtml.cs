@@ -45,8 +45,8 @@ namespace Learn_Academy.Pages.Purchase
                 },
             },
                 Mode = "subscription",
-                SuccessUrl = "https://example.com/success?session_id={CHECKOUT_SESSION_ID}",
-                CancelUrl = "https://example.com/cancel",
+                SuccessUrl = "http://coldspot.me",
+                CancelUrl = "http://coldspot.me",
             };
 
             var service = new SessionService();
@@ -66,13 +66,32 @@ namespace Learn_Academy.Pages.Purchase
                 },
             },
                 Mode = "subscription",
-                SuccessUrl = "https://example.com/success?session_id={CHECKOUT_SESSION_ID}",
-                CancelUrl = "https://example.com/cancel",
+                SuccessUrl = "http://coldspot.me",
+                CancelUrl = "http://coldspot.me",
             };
-
             var service2 = new SessionService();
             Session session2 = service.Create(options2);
             ViewData["Session_id_2"] = session2.Id;
+            var options3 = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string> {
+                "card",
+            },
+                LineItems = new List<SessionLineItemOptions>
+            {
+                new SessionLineItemOptions
+                {
+                    Price = "price_1HByPjLjxHvQGXDJs2bWLAfc",
+                    Quantity = 1,
+                },
+            },
+                Mode = "payment",
+                SuccessUrl = "http://coldspot.me",
+                CancelUrl = "http://coldspot.me",
+            };
+            var service3 = new SessionService();
+            Session session3 = service.Create(options3);
+            ViewData["Session_id_3"] = session3.Id;
             return Page();
         }
 
