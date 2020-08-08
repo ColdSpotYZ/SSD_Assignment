@@ -1,5 +1,6 @@
 ﻿@page
 @inject Microsoft.AspNetCore.Identity.SignInManager<Learn_Academy.Models.ApplicationUser> signInManager;
+@using Learn_Academy.Models;
 @model Learn_Academy.Pages.Testimonial.IndexModel
 
 @{
@@ -8,7 +9,7 @@
 }
 
 <h1>Index</h1>
-@if (signInManager.IsSignedIn(User))
+@if (signInManager.IsSignedIn(User) && ((Membership)ViewData["currentUserMembership"] != null) || User.IsInRole("Admin") || User.IsInRole("Role-Admin") || User.IsInRole("Course-Admin") || User.IsInRole("Teacher"))
 {
     <p>
         <a asp-page="Create">Create New</a>

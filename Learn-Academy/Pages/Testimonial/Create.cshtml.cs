@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Learn_Academy.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Learn_Academy.Pages.Testimonial
 {
@@ -20,8 +21,18 @@ namespace Learn_Academy.Pages.Testimonial
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
+            var current_user = await _context.Users.FirstOrDefaultAsync(m => m.Email == User.Identity.Name);
+            var usersMembership = await _context.Membership.FirstOrDefaultAsync(m => m.ApplicationUser.Email == current_user.Email);
+            if (User.IsInRole("Students"))
+            {
+                if (usersMembership == null)
+                {
+                    return NotFound();
+                }
+
+            }
             return Page();
         }
 

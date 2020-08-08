@@ -278,6 +278,12 @@ C:\Users\darie\source\repos\SSD_Assignment2\Learn-Academy\obj\Debug\netcoreapp2.
 C:\Users\darie\source\repos\SSD_Assignment2\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.dll
 C:\Users\darie\source\repos\SSD_Assignment2\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.pdb
 C:\Users\darie\source\repos\SSD_Assignment2\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csproj.CopyComplete
+C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csproj.CoreCompileInputs.cache
+C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.RazorAssemblyInfo.cache
+C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.RazorAssemblyInfo.cs
+C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.AssemblyInfoInputs.cache
+C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.AssemblyInfo.cs
+C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csprojAssemblyReference.cache
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\bin\Debug\netcoreapp2.2\Learn-Academy.deps.json
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\bin\Debug\netcoreapp2.2\Learn-Academy.runtimeconfig.json
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\bin\Debug\netcoreapp2.2\Learn-Academy.runtimeconfig.dev.json
@@ -285,12 +291,6 @@ C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\bin\Debug\netcoreapp2.2
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\bin\Debug\netcoreapp2.2\Learn-Academy.pdb
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\bin\Debug\netcoreapp2.2\Learn-Academy.Views.dll
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\bin\Debug\netcoreapp2.2\Learn-Academy.Views.pdb
-C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csprojAssemblyReference.cache
-C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csproj.CoreCompileInputs.cache
-C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.RazorAssemblyInfo.cache
-C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.RazorAssemblyInfo.cs
-C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.AssemblyInfoInputs.cache
-C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.AssemblyInfo.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.TagHelpers.input.cache
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.TagHelpers.output.cache
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.RazorCoreGenerate.cache
@@ -345,7 +345,6 @@ C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Courses\View.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Error.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Index.g.cshtml.cs
-C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Privacy.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Purchase\Create.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Purchase\Delete.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Purchase\Details.g.cshtml.cs
@@ -367,6 +366,7 @@ C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Testimonial\Details.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Testimonial\Edit.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Testimonial\Index.g.cshtml.cs
+C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Unfinished.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\_ViewImports.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\_ViewStart.g.cshtml.cs
 C:\Users\jason\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.RazorTargetAssemblyInfo.cache
@@ -465,6 +465,7 @@ C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Testimonial\Details.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Testimonial\Edit.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Testimonial\Index.cshtml.g.cs
+C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Unfinished.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\_ViewImports.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\_ViewStart.cshtml.g.cs
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.RazorTargetAssemblyInfo.cache
@@ -474,5 +475,3 @@ C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.pdb
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.genruntimeconfig.cache
 C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csproj.CopyComplete
-C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Learn-Academy.csprojAssemblyReference.cache
-C:\Users\limka\source\repos\SSD_Assignment\Learn-Academy\obj\Debug\netcoreapp2.2\Razor\Pages\Unfinished.cshtml.g.cs

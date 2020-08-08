@@ -68,7 +68,6 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Display(Name = "Full Name")]
-            [RegularExpression(pattern: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.", ErrorMessage = "Please enter a valid name")]
             public string FullName { get; set; }
         }
 
