@@ -77,7 +77,7 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
             var ipAddress = Request.HttpContext.Connection.RemoteIpAddress;
             if (ipAddress != null) userIP = ipAddress.MapToIPv4().ToString();
 
-            var captchaResponse = Request.Form["g -recaptcha-response"];
+            var captchaResponse = Request.Form["g-recaptcha-response"];
             var payload = string.Format("&secret={0}&remoteip={1}&response={2}",
                 "6LeVnboZAAAAAHssNKqDOEXH6kfNJVJlOjAKjJZc",
                 userIP,
@@ -145,8 +145,8 @@ namespace Learn_Academy.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     ApplicationUser AppUser = _context.Users.SingleOrDefault(u => u.UserName == Input.Email);
-                    ApplicationRole AppRole = await _roleManager.FindByNameAsync("Student");
-
+                    ApplicationRole AppRole = await _roleManager.FindByNameAsync("Students");
+                    
                     IdentityResult roleResult = await _userManager.AddToRoleAsync(AppUser, AppRole.Name);
 
                     // Registration successful attempt - create an audit record
