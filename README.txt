@@ -9,7 +9,7 @@
 |Members|Feature 1|Feature 2|Feature 3|
 |---|:---:|:---:|---:|
 |Jason Chua|CRUD|Upload|Purchase|
-|Lim Kai Xian|Authorization|Testimonial||
+|Lim Kai Xian|Authorization|Testimonial|Search|
 |Darien Tan|Authentication|Auditing||
 
 --- 

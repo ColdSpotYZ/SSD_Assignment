@@ -13125,11 +13125,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\limka\\source\\repos\\SSD_Assignment\\Learn-Academy\\Learn-Academy.csproj",
+      "projectUniqueName": "C:\\Users\\limka\\OneDrive\\Documents\\Ngee Ann Poly\\Year 2 Sem 1\\Secure Software Development\\SSD_Assignment\\Learn-Academy\\Learn-Academy.csproj",
       "projectName": "Learn-Academy",
-      "projectPath": "C:\\Users\\limka\\source\\repos\\SSD_Assignment\\Learn-Academy\\Learn-Academy.csproj",
+      "projectPath": "C:\\Users\\limka\\OneDrive\\Documents\\Ngee Ann Poly\\Year 2 Sem 1\\Secure Software Development\\SSD_Assignment\\Learn-Academy\\Learn-Academy.csproj",
       "packagesPath": "C:\\Users\\limka\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\limka\\source\\repos\\SSD_Assignment\\Learn-Academy\\obj\\",
+      "outputPath": "C:\\Users\\limka\\OneDrive\\Documents\\Ngee Ann Poly\\Year 2 Sem 1\\Secure Software Development\\SSD_Assignment\\Learn-Academy\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

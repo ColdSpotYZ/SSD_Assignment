@@ -23,9 +23,12 @@ namespace Learn_Academy.Pages.Testimonial
 
         public async Task OnGetAsync()
         {
-            var current_user = await _context.Users.FirstOrDefaultAsync(m => m.Email == User.Identity.Name);
-            var userMembership = await _context.Membership.FirstOrDefaultAsync(m => m.ApplicationUser.Email == current_user.Email);
-            ViewData["currentUserMembership"] = userMembership;
+            if (User.Identity.Name != null)
+            {
+                var current_user = await _context.Users.FirstOrDefaultAsync(m => m.Email == User.Identity.Name);
+                var userMembership = await _context.Membership.FirstOrDefaultAsync(m => m.ApplicationUser.Email == current_user.Email);
+                ViewData["currentUserMembership"] = userMembership;
+            }
             Testimonials = await _context.Testimonials.ToListAsync();
         }
     }

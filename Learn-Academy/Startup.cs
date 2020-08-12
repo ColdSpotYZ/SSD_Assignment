@@ -95,8 +95,8 @@ namespace Learn_Academy
         {
             if (env.IsDevelopment())
             {
-                app.UseExceptionHandler("/Error");
-                // app.UseDeveloperExceptionPage();
+                // app.UseExceptionHandler("/Error");
+                app.UseDeveloperExceptionPage();
             }
             else
             {
